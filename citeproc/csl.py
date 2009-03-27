@@ -36,7 +36,7 @@ class Context:
     >>> context = Context()
     >>> len(context.options)
     0
-    >>> context.add_option(Option('et-al-min', 5))
+    >>> context.add_option('et-al-min', 5)
     >>> len(context.options)
     1
     """
@@ -45,8 +45,8 @@ class Context:
         self.sort = []
         self.layout = []
 
-    def add_option(self, option):
-        self.options.append(option)
+    def add_option(self, name, value):
+        self.options.append(Option(name, value))
 
 
 class Citation(Context):
@@ -54,7 +54,7 @@ class Citation(Context):
     >>> citation = Citation()
     >>> len(citation.options)
     0
-    >>> citation.add_option(Option('et-al-min', 5))
+    >>> citation.add_option('et-al-min', 5)
     >>> len(citation.options)
     1
     """
@@ -67,7 +67,7 @@ class Bibliography(Context):
     >>> bib = Bibliography()
     >>> len(bib.options)
     0
-    >>> bib.add_option(Option('et-al-min', 5))
+    >>> bib.add_option('et-al-min', 5)
     >>> len(bib.options)
     1
     """

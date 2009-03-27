@@ -19,8 +19,9 @@ def process_bibliography(style, reference_list):
 
 def citeproc(style, reference_list):
     """
-    With a Style, a list of References and the list of citation groups (the list of citations with their locator), produce the FormattedOutput 
-    for each citation group and the bibliography.
+    With a Style, a list of References and the list of citation 
+    groups (the list of citations with their locator), produce the 
+    FormattedOutput for each citation group and the bibliography.
     """
     pass
 
@@ -45,7 +46,8 @@ def proc_refs(style, reference_list):
 
 def refs_year_suffix(reference_list):
     """
-    Given the list of References, compare year and contributors' names and, when they collide, generate a suffix to append to the year for disambiguation.
+    Given the list of References, compare year and contributors' names and, when they collide, generate a suffix to append to the year for 
+    disambiguation.
     """
     pass
 

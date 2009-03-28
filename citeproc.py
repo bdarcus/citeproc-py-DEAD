@@ -52,14 +52,17 @@ def validate_style(style_id):
 
 
 def process_bibliography(style_id, references):
+    """
+    With a style ID/URI and a list of references, format the bibliography.
+
+    >>> process_bibliography('http://zotero.org/styles/aag', '')
+    'ERROR: your CSL style is not valid.'
+    >>> process_bibliography('http://zotero.org/styles/apa', '')
+    'OK, let's run it.'
+    """
     if validate_style(style_id):
         print("OK, let's run it.")
     else:
         print("ERROR: your CSL style is not valid.")
-
-
-# list_styles() 
-process_bibliography('http://zotero.org/styles/aag', '')
-process_bibliography('http://zotero.org/styles/apa', '')
 
 

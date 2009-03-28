@@ -4,7 +4,7 @@ from citeproc.csl.processor import *
 from lxml import etree
 import os
 
-styles_index = json.loads(open('/Users/darcusb/.csl/styles/index.json').read())
+styles_index = json.loads(open(os.path.expanduser('~/.csl/styles/index.json')).read())
 
 
 def list_styles():
@@ -35,7 +35,7 @@ def update(style_id):
 
 def get_style(style_id):
     fn = styles_index[style_id]['file']
-    path = '/Users/darcusb/.csl/styles/' + fn 
+    path = os.path.expanduser('~/.csl/styles/' + fn) 
     return(open(path, 'rb'))
 
 
@@ -45,7 +45,7 @@ def fileInTestDir(name):
 
 
 def validate_style(style_id):
-    schema = open('/Users/darcusb/xbiblio/csl/schema/trunk/csl.rng', 'rb')
+    schema = open(os.path.expanduser('~/.csl/schema/csl.rng', 'rb'))
     relaxng = etree.RelaxNG(file=schema)
     style = get_style(style_id)
     return(relaxng.validate(etree.parse(style)))
@@ -55,10 +55,10 @@ def process_bibliography(style_id, references):
     try:
         validate(style_id)
     except:
-        print("Your CSL style is not valid.")
+        print("ERROR: your CSL style is not valid.")
 
 
 list_styles() 
-print(validate_style('http://zotero.org/styles/apa'))
+process_bibliography('http://zotero.org/styles/aag', '')
 
 

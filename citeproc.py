@@ -1,9 +1,16 @@
 
 import json
 from citeproc.csl.processor import *
+from lxml import etree
+import os
 
-"this needs to load a json config file"
-styles_index = json.loads('x')
+styles_index = json.loads(open('/Users/darcusb/.csl/styles/index.json').read())
+
+
+def list_styles():
+    print("\nStyles\n======\n")
+    for id in styles_index:
+        print(id)
 
 
 def update_styles():
@@ -12,7 +19,6 @@ def update_styles():
     """
     for styles in styles_index['styles']:
         style.update(style['id'])
-
 
 
 def old(style_id):
@@ -25,5 +31,34 @@ def old(style_id):
 
 def update(style_id):
     pass
+
+
+def get_style(style_id):
+    fn = styles_index[style_id]['file']
+    path = '/Users/darcusb/.csl/styles/' + fn 
+    return(open(path, 'rb'))
+
+
+def fileInTestDir(name):
+    _testdir = os.path.dirname(__file__)
+    return os.path.join(_testdir, name)
+
+
+def validate_style(style_id):
+    schema = open('/Users/darcusb/xbiblio/csl/schema/trunk/csl.rng', 'rb')
+    relaxng = etree.RelaxNG(file=schema)
+    style = get_style(style_id)
+    return(relaxng.validate(etree.parse(style)))
+
+
+def process_bibliography(style_id, references):
+    try:
+        validate(style_id)
+    except:
+        print("Your CSL style is not valid.")
+
+
+list_styles() 
+print(validate_style('http://zotero.org/styles/apa'))
 
 

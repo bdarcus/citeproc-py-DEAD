@@ -39,11 +39,6 @@ def get_style(style_id):
     return(open(path, 'rb'))
 
 
-def fileInTestDir(name):
-    _testdir = os.path.dirname(__file__)
-    return os.path.join(_testdir, name)
-
-
 def validate_style(style_id):
     schema = open(os.path.expanduser('~/.csl/schema/csl.rng'), 'rb')
     relaxng = etree.RelaxNG(file=schema)

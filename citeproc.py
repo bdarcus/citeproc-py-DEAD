@@ -45,20 +45,21 @@ def fileInTestDir(name):
 
 
 def validate_style(style_id):
-    schema = open(os.path.expanduser('~/.csl/schema/csl.rng', 'rb'))
+    schema = open(os.path.expanduser('~/.csl/schema/csl.rng'), 'rb')
     relaxng = etree.RelaxNG(file=schema)
     style = get_style(style_id)
     return(relaxng.validate(etree.parse(style)))
 
 
 def process_bibliography(style_id, references):
-    try:
-        validate(style_id)
-    except:
+    if validate_style(style_id):
+        print("OK, let's run it.")
+    else:
         print("ERROR: your CSL style is not valid.")
 
 
-list_styles() 
+# list_styles() 
 process_bibliography('http://zotero.org/styles/aag', '')
+process_bibliography('http://zotero.org/styles/apa', '')
 
 

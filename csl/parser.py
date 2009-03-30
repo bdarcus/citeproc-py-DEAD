@@ -23,7 +23,8 @@ def parse_bibliography(csl):
     return(bibliography)
 
 
-def parse_style(csl):
+def parse_style(csl_fname):
+    csl = etree.parse(csl_fname)
     info = csl.find('{http://purl.org/net/xbiblio/csl}info')
     macros = csl.findall('{http://purl.org/net/xbiblio/csl}macro')
     citation = csl.find('{http://purl.org/net/xbiblio/csl}citation') 

@@ -25,10 +25,10 @@ def parse_bibliography(bibliography_subtree):
 
 def parse_style(csl_fname):
     csl = etree.parse(csl_fname)
-    info = csl.find('{http://purl.org/net/xbiblio/csl}info')
-    macros = csl.findall('{http://purl.org/net/xbiblio/csl}macro')
-    citation = csl.find('{http://purl.org/net/xbiblio/csl}citation') 
-    bibliography = csl.find('{http://purl.org/net/xbiblio/csl}bibliography')
+    info_tree = csl.find('{http://purl.org/net/xbiblio/csl}info')
+    macros_tree = csl.findall('{http://purl.org/net/xbiblio/csl}macro')
+    citation_tree = csl.find('{http://purl.org/net/xbiblio/csl}citation') 
+    bibliography_tree = csl.find('{http://purl.org/net/xbiblio/csl}bibliography')
     info = parse_info(info_tree)
     macros = parse_macros(macros_tree)
     citation = parse_citation(citation_tree)

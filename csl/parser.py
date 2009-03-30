@@ -1,24 +1,24 @@
 
-def parse_info(csl):
+def parse_info(info_subtree):
     info = Info()
     return(info)
 
 
-def parse_macros(csl):
-    return([parse_macro(macro) for macro in macros])
+def parse_macros(macros_subtree):
+    return([parse_macro(macro) for macro in macros_subtree])
 
 
-def parse_macro(csl):
+def parse_macro(macro_subtree):
     macro = Macro()
     return(macro)
 
 
-def parse_citation(csl):
+def parse_citation(citation_subtree):
     citation = Citation()
     return(citation)
 
 
-def parse_bibliography(csl):
+def parse_bibliography(bibliography_subtree):
     bibliography = Bibliography()
     return(bibliography)
 

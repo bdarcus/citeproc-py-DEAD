@@ -1,6 +1,11 @@
 
+from style import *
+
 def parse_info(info_subtree):
-    info = Info()
+    info_title = info_subtree.findtext('{http://purl.org/net/xbiblio/csl}title')
+    info_id = info_subtree.findtext('{http://purl.org/net/xbiblio/csl}id')
+    info_updated = info_subtree.findtext('{http://purl.org/net/xbiblio/csl}updated')
+    info = Info(title=info_title, id=info_id, updated=info_updated)
     return(info)
 
 

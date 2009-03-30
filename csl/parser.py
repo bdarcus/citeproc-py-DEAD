@@ -5,7 +5,7 @@ def parse_info(csl):
 
 
 def parse_macros(csl):
-    return([macro for macro in macros])
+    return([parse_macro(macro) for macro in macros])
 
 
 def parse_macro(csl):

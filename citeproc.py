@@ -1,6 +1,6 @@
 
 import json
-from citeproc.csl.processor import *
+from csl.processor import *
 from lxml import etree
 import os
 

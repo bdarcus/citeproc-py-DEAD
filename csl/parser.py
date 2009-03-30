@@ -1,30 +1,3 @@
-try:
-    from lxml import etree
-    print("running with lxml.etree")
-except ImportError:
-    try:
-      # Python 2.5
-      import xml.etree.cElementTree as etree
-      print("running with cElementTree on Python 2.5+")
-    except ImportError:
-        try:
-            # Python 2.5
-            import xml.etree.ElementTree as etree
-            print("running with ElementTree on Python 2.5+")
-        except ImportError:
-            try:
-                # normal cElementTree install
-                import cElementTree as etree
-                print("running with cElementTree")
-                except ImportError:
-                    try:
-                        # normal ElementTree install
-                        import elementtree.ElementTree as etree
-                        print("running with ElementTree")
-                    except ImportError:
-                        print("Failed to import ElementTree from any known place")
-
-
 
 def parse_info(csl):
     info = Info()
@@ -51,10 +24,14 @@ def parse_bibliography(csl):
 
 
 def parse_style(csl):
-    info = self.parse_info(csl)
-    macros = self.parse_macros(csl)
-    citation = self.parse_citation(csl)
-    bibliography = self.parse_bibliography(csl)
+    info = csl.find('{http://purl.org/net/xbiblio/csl}info')
+    macros = csl.findall('{http://purl.org/net/xbiblio/csl}macro')
+    citation = csl.find('{http://purl.org/net/xbiblio/csl}citation') 
+    bibliography = csl.find('{http://purl.org/net/xbiblio/csl}bibliography')
+    info = self.parse_info(info_tree)
+    macros = self.parse_macros(macros_tree)
+    citation = self.parse_citation(citation_tree)
+    bibliography = self.parse_bibliography(bibliography_tree)
     style = Style(info, macros, citation, bibliography)
     return(style)
 

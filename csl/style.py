@@ -87,11 +87,14 @@ class Macro(Template):
 class Style:
     """
     >>> style = Style()
+    >>> print(style.info)
+    None
     """
-    def __init__(self):
-        self.info = Info()
-        self.macros = []
-        self.citation = Citation()
-        self.bibliography = Bibliography()
+    def __init__(self, info=None, macros=[], 
+                 citation=None, bibliography=None):
+        self.info = info
+        self.macros = macros
+        self.citation = citation
+        self.bibliography = bibliography
 
 

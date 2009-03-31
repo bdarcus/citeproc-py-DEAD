@@ -28,12 +28,15 @@ def parse_options(options_list):
 
 
 def parse_citation(citation_subtree):
+    options_list = citation_subtree.findall('{http://purl.org/net/xbiblio/csl}option')
     options = parse_options(options_list)
     citation = Citation()
     return(citation)
 
 
 def parse_bibliography(bibliography_subtree):
+    options_list = bibliography_subtree.findall('{http://purl.org/net/xbiblio/csl}option')
+    options = parse_options(options_list)
     bibliography = Bibliography()
     return(bibliography)
 

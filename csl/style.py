@@ -76,12 +76,22 @@ class Bibliography(Context):
 
 
 class Template:
-    pass
+    def __init__(self):
+        self.content = []
 
 
 
 class Macro(Template):
-    pass
+    """
+    >>> macro = Macro()
+    >>> macro.name = "foo"
+    >>> print(macro.name)
+    foo
+    >>> print(len(macro.content))
+    0
+    """
+    def __new__(self, name=None):
+        self.name = name
 
 
 class Style:

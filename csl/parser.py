@@ -16,7 +16,8 @@ def parse_macros(macros_subtree):
 
 
 def parse_macro(macro_subtree):
-    macro = Macro()
+    _name = macro_subtree.get("name")
+    macro = Macro(content=macro_subtree, name=_name)
     return(macro)
 
 

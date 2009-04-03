@@ -1,10 +1,12 @@
 
 from style import *
 
+NS_CSL = "{http://purl.org/net/xbiblio/csl}"
+
 def parse_info(info_subtree):
-    info_title = info_subtree.findtext('{http://purl.org/net/xbiblio/csl}title')
-    info_id = info_subtree.findtext('{http://purl.org/net/xbiblio/csl}id')
-    info_updated = info_subtree.findtext('{http://purl.org/net/xbiblio/csl}updated')
+    info_title = info_subtree.findtext(NS_CSL + 'title')
+    info_id = info_subtree.findtext(NS_CSL + 'id')
+    info_updated = info_subtree.findtext(NS_CSL + 'updated')
     info = Info(title=info_title, id=info_id, updated=info_updated)
     return(info)
 
@@ -28,14 +30,14 @@ def parse_options(options_list):
 
 
 def parse_citation(citation_subtree):
-    options_list = citation_subtree.findall('{http://purl.org/net/xbiblio/csl}option')
+    options_list = citation_subtree.findall(NS_CSL + 'option')
     options = parse_options(options_list)
     citation = Citation()
     return(citation)
 
 
 def parse_bibliography(bibliography_subtree):
-    options_list = bibliography_subtree.findall('{http://purl.org/net/xbiblio/csl}option')
+    options_list = bibliography_subtree.findall(NS_CSL + 'option')
     options = parse_options(options_list)
     bibliography = Bibliography()
     return(bibliography)
@@ -46,10 +48,10 @@ def parse_style(csl_fname):
     csl = etree.parse(csl_fname)
 
     # load up the main subtrees
-    info_tree = csl.find('{http://purl.org/net/xbiblio/csl}info')
-    macros_list = csl.findall('{http://purl.org/net/xbiblio/csl}macro')
-    citation_tree = csl.find('{http://purl.org/net/xbiblio/csl}citation') 
-    bibliography_tree = csl.find('{http://purl.org/net/xbiblio/csl}bibliography')
+    info_tree = csl.find(NS_CSL + 'info')
+    macros_list = csl.findall(NS_CSL + 'macro')
+    citation_tree = csl.find(NS_CSL + 'citation') 
+    bibliography_tree = csl.find(NS_CSL + 'bibliography')
 
     # parse the main components, creating relavent objects
     info = parse_info(info_tree)

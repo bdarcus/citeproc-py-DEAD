@@ -22,7 +22,7 @@ def parse_macro(macro_subtree):
 
 
 def parse_option(option_element):
-    option = Option()
+    option = Option(option_element.get("name"), option_element.get("value"))
     return(option)
 
 

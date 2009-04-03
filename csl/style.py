@@ -76,8 +76,8 @@ class Bibliography(Context):
 
 
 class Template:
-    def __init__(self):
-        self.content = []
+    def __init__(self, content=None):
+        self.content = content
 
 
 
@@ -87,8 +87,8 @@ class Macro(Template):
     >>> macro.name = "foo"
     >>> print(macro.name)
     foo
-    >>> print(len(macro.content))
-    0
+    >>> print(macro.content)
+    None
     """
     def __new__(self, name=None):
         self.name = name

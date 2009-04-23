@@ -1,5 +1,5 @@
 
-from style import *
+from .style import *
 
 NS_CSL = "{http://purl.org/net/xbiblio/csl}"
 

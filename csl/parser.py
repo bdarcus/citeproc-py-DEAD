@@ -1,5 +1,6 @@
 
 from .style import *
+from lxml import etree
 
 NS_CSL = "{http://purl.org/net/xbiblio/csl}"
 

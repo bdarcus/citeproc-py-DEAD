@@ -1,6 +1,6 @@
 
 try:
-    from lxml import etree
+    from lxml import etree as etree
     print("running with lxml.etree")
 except ImportError:
     try:

@@ -90,7 +90,7 @@ class Macro(Template):
     >>> print(macro.content)
     None
     """
-    def __new__(self, name=None):
+    def __new__(self, name=None, content=None):
         self.name = name
 
 

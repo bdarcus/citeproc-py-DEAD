@@ -41,7 +41,7 @@ def parse_citation(citation_subtree):
 def parse_bibliography(bibliography_subtree):
     options_list = bibliography_subtree.findall(NS_CSL + 'option')
     options = parse_options(options_list)
-    bibliography = Bibliography()
+    bibliography = Bibliography(options=options)
     return(bibliography)
 
 

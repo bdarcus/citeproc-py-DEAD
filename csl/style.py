@@ -40,10 +40,10 @@ class Context:
     >>> len(context.options)
     1
     """
-    def __init__(self):
-        self.options = []
-        self.sort = []
-        self.layout = []
+    def __init__(self, options=None, sort=None, layout=None):
+        self.options = options or []
+        self.sort = sort or []
+        self.layout = layout or []
 
     def add_option(self, name, value):
         self.options.append(Option(name, value))

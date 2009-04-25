@@ -83,15 +83,16 @@ class Template:
 
 class Macro(Template):
     """
-    >>> macro = Macro()
+    >>> macro = Macro(name="foo")
     >>> macro.name = "foo"
     >>> print(macro.name)
     foo
     >>> print(macro.content)
     None
     """
-    def __new__(self, name=None, content=None):
+    def __init__(self, name, content=None):
         self.name = name
+        self.content = content
 
 
 class Style:

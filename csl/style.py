@@ -49,48 +49,8 @@ class Context:
         self.options.append(Option(name, value))
 
 
-class Citation(Context):
-    """
-    >>> citation = Citation()
-    >>> len(citation.options)
-    0
-    >>> citation.add_option('et-al-min', 5)
-    >>> len(citation.options)
-    1
-    """
-    pass
-
-
-
-class Bibliography(Context):
-    """
-    >>> bib = Bibliography()
-    >>> len(bib.options)
-    0
-    >>> bib.add_option('et-al-min', 5)
-    >>> len(bib.options)
-    1
-    """
-    pass
-
-
-
 class Template:
-    def __init__(self, content=None):
-        self.content = content
-
-
-
-class Macro(Template):
-    """
-    >>> macro = Macro(name="foo")
-    >>> macro.name = "foo"
-    >>> print(macro.name)
-    foo
-    >>> print(macro.content)
-    None
-    """
-    def __init__(self, name, content=None):
+    def __init__(self, name=None, content=None):
         self.name = name
         self.content = content
 

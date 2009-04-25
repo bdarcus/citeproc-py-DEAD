@@ -18,7 +18,7 @@ def parse_macros(macros_subtree):
 
 def parse_macro(macro_subtree):
     _name = macro_subtree.get("name")
-    macro = Macro(content=macro_subtree, name=_name)
+    macro = Template(content=macro_subtree, name=_name)
     return(macro)
 
 
@@ -34,14 +34,14 @@ def parse_options(options_list):
 def parse_citation(citation_subtree):
     options_list = citation_subtree.findall(NS_CSL + 'option')
     options = parse_options(options_list)
-    citation = Citation()
+    citation = Context()
     return(citation)
 
 
 def parse_bibliography(bibliography_subtree):
     options_list = bibliography_subtree.findall(NS_CSL + 'option')
     options = parse_options(options_list)
-    bibliography = Bibliography(options=options)
+    bibliography = Context(options=options)
     return(bibliography)
 
 

@@ -1,9 +1,13 @@
+# CiteProc-py
 
-this may just be experiment
+This is a python implementation of the Citation Style Language (CSL).
 
-goal: a Python CSL implementation that includes a good test foundation, and is easy 
+This may just be experiment.
+
+The goal is a Python CSL implementation that includes a good test foundation, and is easy 
 to integrate into different contexts.
 
-license: modified BSD
+## License
 
+MIT (see LICENSE file)
 

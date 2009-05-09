@@ -10,9 +10,9 @@ class Info:
     >>> print(info.categories[0])
     author-date
     """
-    def __init__(self, title=None, id=None, updated=None):
+    def __init__(self, title=None, sid=None, updated=None):
         self.title = title
-        self.id = id
+        self.sid = sid
         self.updated = updated
         self.categories = []
 

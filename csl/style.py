@@ -12,11 +12,11 @@ class Info:
     >>> print(info.categories[0])
     author-date
     """
-    def __init__(self, title=None, sid=None, updated=None):
+    def __init__(self, title=None, uri=None, updated=None, categories=None):
         self.title = title
-        self.sid = sid
+        self.uri = uri
         self.updated = updated
-        self.categories = []
+        self.categories = categories or []
 
     def add_category(self, category):
         """
@@ -75,7 +75,7 @@ class Style:
     def __init__(self, info=None, macros=None, 
                  citation=None, bibliography=None):
         self.info = info
-        self.macros = macros
+        self.macros = macros or []
         self.citation = citation
         self.bibliography = bibliography
 

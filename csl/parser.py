@@ -11,9 +11,9 @@ def parse_info(info_subtree):
     parses the Style metadata
     """
     info_title = info_subtree.findtext(NS_CSL + 'title')
-    info_id = info_subtree.findtext(NS_CSL + 'id')
+    info_uri = info_subtree.findtext(NS_CSL + 'id')
     info_updated = info_subtree.findtext(NS_CSL + 'updated')
-    info = Info(title=info_title, sid=info_id, updated=info_updated)
+    info = Info(title=info_title, uri=info_uri, updated=info_updated)
     return(info)
 
 

@@ -1,4 +1,6 @@
-
+"""
+A CSL Style
+"""
 
 class Info:
     """
@@ -17,6 +19,9 @@ class Info:
         self.categories = []
 
     def add_category(self, category):
+        """
+        adds a category to the categories list
+        """
         self.categories.append(category)
 
 
@@ -46,10 +51,16 @@ class Context:
         self.layout = layout or []
 
     def add_option(self, name, value):
+        """
+        adds an option to the options list
+        """
         self.options.append(Option(name, value))
 
 
 class Template:
+    """
+    A collection of CSL processing instructions.
+    """
     def __init__(self, name=None, content=None):
         self.name = name
         self.content = content
@@ -61,7 +72,7 @@ class Style:
     >>> print(style.info)
     None
     """
-    def __init__(self, info=None, macros=[], 
+    def __init__(self, info=None, macros=None, 
                  citation=None, bibliography=None):
         self.info = info
         self.macros = macros

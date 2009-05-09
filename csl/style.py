@@ -25,17 +25,6 @@ class Info:
         self.categories.append(category)
 
 
-class Option:
-    """
-    >>> option = Option('et-al-min', '4')
-    >>> print(option.value)
-    4
-    """
-    def __init__(self, name, value):
-        self.name = name
-        self.value = value
-
-
 class Context:
     """
     >>> context = Context()
@@ -46,7 +35,7 @@ class Context:
     1
     """
     def __init__(self, options=None, sort=None, layout=None):
-        self.options = options or []
+        self.options = options or {}
         self.sort = sort or []
         self.layout = layout or []
 
@@ -54,7 +43,7 @@ class Context:
         """
         adds an option to the options list
         """
-        self.options.append(Option(name, value))
+        self.options[name] = value
 
 
 class Template:
@@ -64,6 +53,12 @@ class Template:
     def __init__(self, name=None, content=None):
         self.name = name
         self.content = content
+
+    def to_xml(self):
+        """
+        Print the macro or layout to an XML string
+        """
+        print(etree.tostring(self.content))
 
 
 class Style:
@@ -79,4 +74,29 @@ class Style:
         self.citation = citation
         self.bibliography = bibliography
 
+    def to_xml(self):
+        """
+        Probably need to pass to a template.
+        """
+        pass
 
+    def to_html(self):
+        """
+        Print the style to an HTML representation.
+        """
+        pass
+
+
+def get_style(uri):
+    """
+    When given a style URI, fetches the CSL style file.
+    """
+    style_file = None
+    return(style_file)
+
+
+def validate(style, version="1.0"):
+    """
+    Validates a CSL style against the schema.
+    """
+    pass

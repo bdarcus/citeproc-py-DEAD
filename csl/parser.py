@@ -1,7 +1,7 @@
 """
 Constructs a Python CSL Style class from an XML style instance.
 """
-from .style import Style, Info, Option, Context, Template
+from .style import Style, Info, Context, Template
 from lxml import etree
 
 NS_CSL = "{http://purl.org/net/xbiblio/csl}"
@@ -33,19 +33,14 @@ def parse_macro(macro_subtree):
     return(macro)
 
 
-def parse_option(option_element):
-    """
-    parses a parameter option
-    """
-    option = Option(option_element.get("name"), option_element.get("value"))
-    return(option)
-
-
 def parse_options(options_list):
     """
     parses a list of parameter options
     """
-    return([parse_option(option) for option in options_list])
+    options = {}
+    for option in options_list:
+        options[option.get("name")] = option.get("value")
+    return(options)
 
 
 def parse_citation(citation_subtree):
@@ -68,7 +63,7 @@ def parse_bibliography(bibliography_subtree):
     return(bibliography)
 
 
-def parse_style(csl_fname):
+def parse_style(csl_fname, validate=True):
     """
     parses the CSL style
     """

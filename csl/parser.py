@@ -59,7 +59,7 @@ def parse_bibliography(bibliography_subtree):
     """
     options_list = bibliography_subtree.findall(NS_CSL + 'option')
     options = parse_options(options_list)
-    bibliography = Context(options=options)
+    bibliography = Context(options=options, layout=bibliography_subtree.find(NS_CSL + 'layout'))
     return(bibliography)
 
 

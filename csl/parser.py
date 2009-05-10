@@ -1,7 +1,7 @@
 """
 Constructs a Python CSL Style class from an XML style instance.
 """
-from .style import Style, Info, Context, Template
+from style import Style, Info, Context, Template
 from lxml import etree
 
 NS_CSL = "{http://purl.org/net/xbiblio/csl}"
@@ -79,8 +79,16 @@ def parse_style(csl_fname, validate=True):
     # parse the main components, creating relavent objects
     info = parse_info(info_tree)
     macros = parse_macros(macros_list)
-    citation = parse_citation(citation_tree)
-    bibliography = parse_bibliography(bibliography_tree)
+
+    if citation_tree:
+        citation = parse_citation(citation_tree)
+    else:
+        citation = None
+
+    if bibliography_tree:
+        bibliography = parse_bibliography(bibliography_tree)
+    else:
+        bibliography = None
 
     # instantiate Style object
     style = Style(info, macros, citation, bibliography)

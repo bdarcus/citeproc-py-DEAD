@@ -1,12 +1,46 @@
 
 
-class FormattedOutput(field, content, style, prefix, suffix):
+class FormattedNode:
     """
+    The formatted output.
+    """
+    def __init__(self, field, content, style=None, prefix=None, suffix=None, block=False):
+        self.field = field
+        self.content = content
+        self.style = style
+        self.prefix = prefix
+        self.suffix = suffix
+        self.block = block
 
+    def to_html(rdfa=False):
+        result = ""
+        result += self.prefix
+        result += self.content
+        result += self.suffix
+        return(result)
+
+
+
+class FormattedList:
     """
+    The formatted output.
+    """
+    def __init__(self, items, prefix=None, suffix=None):
+        self.items = items
+        self.prefix = prefix
+        self.suffix = suffix
+
+
+
+class FormattedCitationCluster(FormattedList):
     pass
 
-    
+
+
+class FormattedReferenceList(FormattedList):
+    pass
+
+
 
 def process_citations(style, reference_list, citation):
     """

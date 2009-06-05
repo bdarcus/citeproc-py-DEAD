@@ -25,10 +25,11 @@ class FormattedList:
     """
     The formatted output.
     """
-    def __init__(self, items, prefix=None, suffix=None):
+    def __init__(self, items, delimiter=None, prefix=None, suffix=None, block=False):
         self.items = items
         self.prefix = prefix
         self.suffix = suffix
+        self.block = block
 
 
 

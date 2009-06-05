@@ -1,8 +1,18 @@
 
+
+class FormattedOutput(field, content, style, prefix, suffix):
+    """
+
+    """
+    pass
+
+    
+
 def process_citations(style, reference_list, citation):
     """
-    With a Style, a list of References and the list of citation groups (the list of citations with their locator), produce the 
-    FormattedOutput for each citation group.
+    With a Style, a list of References and the list of citation groups 
+    (the list of citations with their locator), produce the FormattedOutput 
+    for each citation group.
     """
     pass
 
@@ -46,7 +56,8 @@ def proc_refs(style, reference_list):
 
 def refs_year_suffix(reference_list):
     """
-    Given the list of References, compare year and contributors' names and, when they collide, generate a suffix to append to the year for 
+    Given the list of References, compare year and contributors' names and, 
+    when they collide, generate a suffix to append to the year for 
     disambiguation.
     """
     pass

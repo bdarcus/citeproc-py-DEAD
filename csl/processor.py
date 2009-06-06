@@ -4,7 +4,7 @@ class FormattedNode:
     """
     The formatted output.
     """
-    def __init__(self, field, content, style=None, prefix=None, suffix=None, block=False):
+    def __init__(self, field, content, style=None, prefix=None, suffix=None, block=False, href=None):
         self.field = field
         self.content = content
         self.style = style

@@ -49,7 +49,14 @@ def process_citations(style, reference_list, citation):
     (the list of citations with their locator), produce the FormattedOutput 
     for each citation group.
     """
-    pass
+    formattedCitation = FormattedCitationCluster()
+    for reference in citation:
+        formattedCitationReference = []
+        for element in style.citation.content:
+            formattedNode = FormattedNode(content=reference.content)
+            formattedReference.append(formattedNode)
+        formattedCitation.append(formattedCitationReference)
+    return(formattedCitation)
 
 
 
@@ -58,8 +65,14 @@ def process_bibliography(style, reference_list):
     With a Style and the list of References produce the FormattedOutput 
     for the bibliography.  
     """
-    pass
-
+    formattedBibliography = FormattedReferenceList()
+    for reference in reference_list:
+        formattedReference = []
+        for element in style.bibliography.content:
+            formattedNode = FormattedNode(content=reference.content)
+            formattedReference.append(formattedNode)
+        formattedBibliography.append(formattedReference)
+    return(formattedBibliography)
 
 
 def citeproc(style, reference_list):

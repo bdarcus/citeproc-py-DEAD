@@ -43,21 +43,22 @@ class FormattedReferenceList(FormattedList):
 
 
 
-def process_citations(style, reference_list, citation):
+def process_citations(style, reference_list, citation, mode='html'):
     """
     With a Style, a list of References and the list of citation groups 
     (the list of citations with their locator), produce the FormattedOutput 
     for each citation group.
     """
     formattedCitation = FormattedCitationCluster()
+
     for reference in citation:
         formattedCitationReference = []
         for element in style.citation.content:
             formattedNode = FormattedNode(content=reference.content)
             formattedReference.append(formattedNode)
         formattedCitation.append(formattedCitationReference)
-    return(formattedCitation)
 
+    return(formattedCitation)
 
 
 def process_bibliography(style, reference_list):
@@ -66,12 +67,14 @@ def process_bibliography(style, reference_list):
     for the bibliography.  
     """
     formattedBibliography = FormattedReferenceList()
+
     for reference in reference_list:
         formattedReference = []
         for element in style.bibliography.content:
             formattedNode = FormattedNode(content=reference.content)
             formattedReference.append(formattedNode)
         formattedBibliography.append(formattedReference)
+
     return(formattedBibliography)
 
 

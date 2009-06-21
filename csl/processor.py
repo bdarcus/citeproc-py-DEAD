@@ -5,13 +5,14 @@ class FormattedNode:
     """
     The formatted output.
     """
-    def __init__(self, field, content, style=None, prefix=None, suffix=None, block=False, href=None):
+    def __init__(self, field, content, style=None, prefix=None, suffix=None, quote=False, block=False, href=None):
         self.field = field
         self.content = content
         self.style = style
         self.prefix = prefix
         self.suffix = suffix
         self.block = block
+        self.quote = quote
 
     def to_html(rdfa=False):
         result = ""

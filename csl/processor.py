@@ -1,5 +1,5 @@
 
-from .style import NS_CSL
+from style import NS_CSL
 
 class FormattedNode:
     """

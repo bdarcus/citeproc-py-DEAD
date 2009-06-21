@@ -2,6 +2,8 @@
 A CSL Style
 """
 
+NS_CSL = "{http://purl.org/net/xbiblio/csl}"
+
 class Info:
     """
     >>> info = Info()

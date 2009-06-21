@@ -7,7 +7,7 @@ import os
 
 TESTS = glob.glob(os.path.expanduser('~/xbiblio/citeproc-js/branches/fbennett/std/machines/*.json'))
 
-def run_test(test_index, test_path):
+def run_ctest(test_index, test_path):
     try:
         test = json.loads(open(test_path).read())
         print("\n==================================\n", test['name'], "\n==================================")
@@ -25,8 +25,8 @@ def run_test(test_index, test_path):
 def run_tests(category='all'):
     print("There are ", len(TESTS), " tests to run.")
     for test_index, test_path in enumerate(TESTS):
-        print("test: ", test_index, " ", test_path)
-        run_test(test_index, test_path)
+        print("     test: ", test_index + 1, " ", test_path)
+        run_ctest(test_index, test_path)
 
 
 run_tests()

@@ -1,4 +1,5 @@
 
+from .style import NS_CSL
 
 class FormattedNode:
     """
@@ -43,11 +44,52 @@ class FormattedReferenceList(FormattedList):
 
 
 
+def sortkey(reference, style, context='bibliography'):
+    """
+    When given a Reference and a Style, returns a sorting key.
+    """
+    return(reference['title'], reference['date'])
+
+
+def process_group(node):
+    pass
+
+
+def process_names(node):
+    pass
+
+
+def process_choose(node):
+    pass
+
+
+def process_text(node):
+    return(FormattedNode())
+
+
+def process_node(node):
+    """
+    """
+    if node.tag == NS_CSL + "group":
+        process_group(node)
+    elif node.tag == NS_CSL + "names":
+        process_names(node)
+    elif node.tag == NS_CSL + "choose":
+        process_choose(node)
+    else:
+        process_text(node)
+
+
+def process_nodes(nodes):
+    for element in nodes.iter():
+        process_node(element)
+
+
 def process_citations(style, reference_list, citation, mode='html'):
     """
     With a Style, a list of References and the list of citation groups 
-    (the list of citations with their locator), produce the FormattedOutput 
-    for each citation group.
+    (the list of citations with their locator), produce the for 
+    FormattedOutput each citation group.
     """
     formattedCitation = FormattedCitationCluster()
 

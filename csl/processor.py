@@ -1,6 +1,19 @@
 
 from style import NS_CSL
 
+"""
+>>> a = [{"v":"title"},{"v":"date"}]
+>>> b = [{"title":"First Title","date":1999},{"title":"Second Title","date":2000}]
+>>> for item in b:
+...     for node in a:
+...         print item[node['v']]
+... 
+First Title
+1999
+Second Title
+2000
+"""
+
 class FormattedNode:
     """
     The formatted output.

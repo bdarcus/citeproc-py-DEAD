@@ -12,6 +12,8 @@ First Title
 1999
 Second Title
 2000
+>>> [[item[node['v']] for node in a] for item in b]
+[['First Title', 1999], ['Second Title', 2000]]
 """
 
 class FormattedNode:

@@ -53,20 +53,27 @@ def sortkey(reference, style, context='bibliography'):
     return(reference['title'], reference['date'])
 
 
-def process_group(node):
+def process_group(node, item):
     pass
 
 
-def process_names(node):
+def process_names(node, item):
     pass
 
 
-def process_choose(node):
+def process_choose(node, item):
     pass
 
 
-def process_text(node):
-    return(FormattedNode())
+def process_text(node, item):
+    fstyle = node.get('font-style')
+    fweight = node.get('font-weight')
+    fvariant = node.get('font-variant')
+    prefix = node.get('prefix')
+    suffix = node.get('suffix')
+    content = item[node.get('variable')] # or grab the macro result
+    formatted_node = FormattedNode()
+    return(formatted_node)
 
 
 def process_node(node, item):
@@ -80,11 +87,6 @@ def process_node(node, item):
         process_choose(node, item)
     elif node.tag == NS_CSL + "text":
         process_text(node, item)
-
-
-def process_nodes(nodes):
-    for element in nodes.iter():
-        process_node(element)
 
 
 def process_citations(style, reference_list, citation, mode='html'):

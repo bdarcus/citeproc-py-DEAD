@@ -73,13 +73,13 @@ def process_node(node, item):
     """
     """
     if node.tag == NS_CSL + "group":
-        process_group(node)
+        process_group(node, item)
     elif node.tag == NS_CSL + "names":
-        process_names(node)
+        process_names(node, item)
     elif node.tag == NS_CSL + "choose":
-        process_choose(node)
-    else:
-        process_text(node)
+        process_choose(node, item)
+    elif node.tag == NS_CSL + "text":
+        process_text(node, item)
 
 
 def process_nodes(nodes):

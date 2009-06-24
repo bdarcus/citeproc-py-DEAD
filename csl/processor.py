@@ -1,20 +1,6 @@
 
 from style import NS_CSL
 
-"""
->>> a = [{"v":"title"},{"v":"date"}]
->>> b = [{"title":"First Title","date":1999},{"title":"Second Title","date":2000}]
->>> for item in b:
-...     for node in a:
-...         print item[node['v']]
-... 
-First Title
-1999
-Second Title
-2000
->>> [[item[node['v']] for node in a] for item in b]
-[['First Title', 1999], ['Second Title', 2000]]
-"""
 
 class FormattedNode:
     """
@@ -83,7 +69,7 @@ def process_text(node):
     return(FormattedNode())
 
 
-def process_node(node):
+def process_node(node, item):
     """
     """
     if node.tag == NS_CSL + "group":
@@ -107,16 +93,10 @@ def process_citations(style, reference_list, citation, mode='html'):
     (the list of citations with their locator), produce the for 
     FormattedOutput each citation group.
     """
-    formattedCitation = FormattedCitationCluster()
+    citation = [[process_node(node, citeref) for node in style.citation.layout] 
+               for citeref in citation]
 
-    for reference in citation:
-        formattedCitationReference = []
-        for element in style.citation.content:
-            formattedNode = FormattedNode(content=reference.content)
-            formattedReference.append(formattedNode)
-        formattedCitation.append(formattedCitationReference)
-
-    return(formattedCitation)
+    return(citation)
 
 
 def process_bibliography(style, reference_list):
@@ -124,16 +104,10 @@ def process_bibliography(style, reference_list):
     With a Style and the list of References produce the FormattedOutput 
     for the bibliography.  
     """
-    formattedBibliography = FormattedReferenceList()
+    list = [[process_node(node, item) for node in style.bibliography.layout] 
+               for item in reference_list]
 
-    for reference in reference_list:
-        formattedReference = []
-        for element in style.bibliography.content:
-            formattedNode = FormattedNode(content=reference.content)
-            formattedReference.append(formattedNode)
-        formattedBibliography.append(formattedReference)
-
-    return(formattedBibliography)
+    return(list)
 
 
 def citeproc(style, reference_list):

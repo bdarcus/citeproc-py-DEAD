@@ -94,7 +94,7 @@ def process_citations(style, reference_list, citation, mode='html'):
     FormattedOutput each citation group.
     """
     formatted_citation = [[process_node(node, citeref) for node in style.citation.layout] 
-               for citeref in citation]
+                             for citeref in citation]
 
     return(formatted_citation)
 

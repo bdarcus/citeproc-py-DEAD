@@ -93,10 +93,10 @@ def process_citations(style, reference_list, citation, mode='html'):
     (the list of citations with their locator), produce the for 
     FormattedOutput each citation group.
     """
-    citation = [[process_node(node, citeref) for node in style.citation.layout] 
+    formatted_citation = [[process_node(node, citeref) for node in style.citation.layout] 
                for citeref in citation]
 
-    return(citation)
+    return(formatted_citation)
 
 
 def process_bibliography(style, reference_list):
@@ -104,10 +104,10 @@ def process_bibliography(style, reference_list):
     With a Style and the list of References produce the FormattedOutput 
     for the bibliography.  
     """
-    list = [[process_node(node, item) for node in style.bibliography.layout] 
-               for item in reference_list]
+    formatted_list = [[process_node(node, item) for node in style.bibliography.layout] 
+                         for item in reference_list]
 
-    return(list)
+    return(formatted_list)
 
 
 def citeproc(style, reference_list):

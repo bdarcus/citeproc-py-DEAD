@@ -2,7 +2,16 @@
 Constructs a Python CSL Style class from an XML style instance.
 """
 from style import Style, Info, Context, Template
-from lxml import etree
+try:
+    from lxml import etree as etree
+    print("running with lxml.etree")
+except ImportError:
+    try:
+        # Python 2.5; appears to work with Jython and IronPython as well
+        import xml.etree.cElementTree as etree
+        print("running with cElementTree on Python 2.5+")
+    except ImportError:
+        print("Failed to import ElementTree from any known place")
 
 NS_CSL = "{http://purl.org/net/xbiblio/csl}"
 

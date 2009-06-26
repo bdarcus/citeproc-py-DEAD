@@ -1,6 +1,5 @@
 import os
 import glob
-from lxml import etree
 from parser import parse_style, NS_CSL
 from operator import itemgetter
 

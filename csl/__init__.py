@@ -4,7 +4,7 @@ try:
     print("running with lxml.etree")
 except ImportError:
     try:
-        # Python 2.5
+        # Python 2.5; appears to work with Jython and IronPython as well
         import xml.etree.cElementTree as etree
         print("running with cElementTree on Python 2.5+")
     except ImportError:

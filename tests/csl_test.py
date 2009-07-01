@@ -1,11 +1,13 @@
 
 import json
 from lxml import etree
-#import citeproc
+#import csl
 import glob
 import os
 
-TESTS = glob.glob(os.path.expanduser('~/xbiblio/citeproc-js/branches/fbennett/std/machines/*.json'))
+os.getcwd()
+
+TESTS = glob.glob('*.json')
 
 def run_ctest(test_index, test_path):
     try:

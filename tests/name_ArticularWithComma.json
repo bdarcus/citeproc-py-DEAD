@@ -1,0 +1,23 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <layout>\n            <names variable=\"author\">\n                <name />\n            </names>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "comma_suffix": true, 
+                    "primary-key": "Doe", 
+                    "secondary-key": "Jeffrey", 
+                    "sticky": false, 
+                    "suffix": "Jr."
+                }
+            ], 
+            "id": "item-1", 
+            "issued": "2001", 
+            "title": "My Life as an Anonymous Heir", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "Jeffrey Doe, Jr.", 
+    "schema": "0.8"
+}

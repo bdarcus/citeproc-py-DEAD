@@ -1,0 +1,122 @@
+{
+    "citations": [
+        [
+            [
+                "ITEM-1", 
+                {}
+            ], 
+            [
+                "ITEM-3", 
+                {}
+            ], 
+            [
+                "ITEM-4", 
+                {}
+            ], 
+            [
+                "ITEM-5", 
+                {}
+            ], 
+            [
+                "ITEM-6", 
+                {}
+            ]
+        ]
+    ], 
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n  <citation>\n\t<option name=\"collapse\" value=\"year-suffix\"/>\n    <option name=\"disambiguate-add-year-suffix\" value=\"true\"/>\n    <option name=\"year-suffix-delimiter\" value=\",\"/>\n\t<layout delimiter=\", \">\n      <group delimiter=\" \">\n        <names variable=\"author\">\n          <name form=\"short\"/>\n        </names>\n        <date variable=\"issued\">\n          <date-part name=\"year\"/>\n        </date>\n      </group>\n      <text variable=\"year-suffix\"/>\n\t</layout>\n  </citation>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-1", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Paper 1", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-2", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Paper 2", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-3", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Paper 3", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-4", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Paper 4", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-5", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Paper 5", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-6", 
+            "issued": {
+                "year": "2001"
+            }, 
+            "title": "Paper 6", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "Smith 2000a,c,d,e, 2001", 
+    "schema": "0.9"
+}

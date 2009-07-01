@@ -1,0 +1,93 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n\n    <citation>\n        <layout>\n            <option name=\"et-al-min\" value=\"4\"/>\n            <option name=\"et-al-use-first\" value=\"3\"/>\n            <names variable=\"author\">\n                <name form=\"count\"/>\n            </names>\n        </layout>\n    </citation>\n\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Roe", 
+                    "secondary-key": "Jane", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Brown", 
+                    "secondary-key": "Robert", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "Tom", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-1", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "Jake", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Brown", 
+                    "secondary-key": "Robert", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-2", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "Jake", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-3", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-4", 
+            "type": "book"
+        }, 
+        {
+            "editor": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-5", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "33210", 
+    "schema": "0.9 experimental"
+}

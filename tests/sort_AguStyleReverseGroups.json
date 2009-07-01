@@ -1,0 +1,163 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n\n    <!-- KEYS -->\n    <macro name=\"key-creators\">\n        <names variable=\"author\">\n            <name name-as-sort-order=\"all\"/>\n            <substitute>\n                <names variable=\"editor\"/>\n            </substitute>\n        </names>\n    </macro>\n    <macro name=\"key-creators-count\">\n        <names variable=\"author\">\n            <name form=\"count\"/>\n            <substitute>\n                <names variable=\"editor\"/>\n            </substitute>\n        </names>\n    </macro>\n    <macro name=\"key-year\">\n        <date variable=\"issued\">\n            <date-part name=\"year\"/>\n        </date>\n    </macro>\n\n    <!-- DISPLAY NAMES -->\n    <macro name=\"creators\">\n        <names variable=\"author\">\n            <name and=\"text\" initialize-with=\".\" sort-separator=\", \" delimiter=\", \" name-as-sort-order=\"first\"/>\n            <substitute>\n                <names variable=\"editor\"/>\n            </substitute>\n        </names>\n    </macro>\n\n    <!-- DISPLAY DATE -->\n    <macro name=\"year\">\n        <group prefix=\" (\" suffix=\")\">\n            <date variable=\"issued\">\n                <date-part name=\"year\"/>\n            </date>\n            <text variable=\"year-suffix\"/>\n        </group>\n    </macro>\n\n\n    <citation>\n        <option name=\"disambiguate-add-year-suffix\" value=\"true\" />\n        <layout>\n            <text macro=\"creators\"/>\n            <text macro=\"year\"/>\n        </layout>\n    </citation>\n    <bibliography>\n\t\t<option name=\"collapse\" value=\"year-suffix\"/>\n        <sort>\n            <key macro=\"key-creators\" names-min=\"1\" names-use-first=\"1\"/>\n            <key macro=\"key-creators-count\" names-min=\"3\" names-use-first=\"3\" sort=\"descending\"/>\n            <key macro=\"key-creators\" names-min=\"3\" names-use-first=\"1\"/>\n            <key macro=\"key-year\"/>\n        </sort>\n        <layout>\n            <text macro=\"creators\"/>\n            <text macro=\"year\"/>\n        </layout>\n    </bibliography>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "Al", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-1", 
+            "issued": {
+                "year": "1989"
+            }, 
+            "title": "Book One", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "Al", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-2", 
+            "issued": {
+                "year": "1989"
+            }, 
+            "title": "Book Two", 
+            "type": "book"
+        }, 
+        {
+            "editor": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "Al", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-3", 
+            "issued": {
+                "year": "1991"
+            }, 
+            "title": "Book Three", 
+            "type": "book"
+        }, 
+        {
+            "editor": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "Al", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Allen", 
+                    "secondary-key": "Carl", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-4", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Book Four", 
+            "type": "book"
+        }, 
+        {
+            "editor": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "Al", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Frank", 
+                    "secondary-key": "Beauregarde", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-5", 
+            "issued": {
+                "year": "1995"
+            }, 
+            "title": "Book Five", 
+            "type": "book"
+        }, 
+        {
+            "editor": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "Al", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Frank", 
+                    "secondary-key": "Beauregarde", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-6", 
+            "issued": {
+                "year": "1997"
+            }, 
+            "title": "Book Six", 
+            "type": "book"
+        }, 
+        {
+            "editor": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "Al", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Roberts", 
+                    "secondary-key": "Lionel", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Jones", 
+                    "secondary-key": "Theresa", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-7", 
+            "issued": {
+                "year": "1993"
+            }, 
+            "title": "Book Seven", 
+            "type": "book"
+        }, 
+        {
+            "editor": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "Al", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Jones", 
+                    "secondary-key": "Theresa", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Roberts", 
+                    "secondary-key": "Lionel", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-8", 
+            "issued": {
+                "year": "1997"
+            }, 
+            "title": "Book Eight", 
+            "type": "book"
+        }
+    ], 
+    "mode": "bibliography", 
+    "result": "<ul class=\"csl-bib-body\">\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Smith, A., L. Roberts, and T. Jones</span> <span class=\"csl-bib-other\">(1993)</span></li>\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Smith, A., T. Jones, and L. Roberts</span> <span class=\"csl-bib-other\">(1997)</span></li>\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Smith, A. and C. Allen</span> <span class=\"csl-bib-other\">(2000)</span></li>\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Smith, A. and B. Frank</span> <span class=\"csl-bib-other\">(1995)</span></li>\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Smith, A. and B. Frank</span> <span class=\"csl-bib-other\">(1997)</span></li>\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Smith, A.</span> <span class=\"csl-bib-other\">(1989a)</span></li>\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Smith, A.</span> <span class=\"csl-bib-other\">(1989b)</span></li>\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Smith, A.</span> <span class=\"csl-bib-other\">(1991)</span></li>\n</ul>", 
+    "schema": "0.9 experimental"
+}

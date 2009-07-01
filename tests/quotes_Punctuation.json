@@ -1,0 +1,23 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en-US\">\n\n    <macro name=\"title\">\n       <text variable=\"title\" quotes=\"true\" suffix=\",\"/>\n    </macro>\n\n    <citation>\n        <layout>\n            <text value=\"Ignore me\"/>\n        </layout>\n    </citation>\n\n    <bibliography>\n        <layout>\n            <text macro=\"title\"/>\n        </layout>        \n    </bibliography>\n\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-1", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "The Book Title", 
+            "type": "book"
+        }
+    ], 
+    "mode": "bibliography", 
+    "result": "\u201cThe Book Title,\u201d", 
+    "schema": "0.8"
+}

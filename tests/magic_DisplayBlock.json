@@ -1,0 +1,40 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <layout>\n            <text value=\"hello\"/>\n        </layout>\n    </citation>\n    <bibliography>\n        <layout>\n            <group delimiter=\" \">\n                <group delimiter=\", \">\n                    <names variable=\"author\">\n                        <name/>\n                    </names>\n                    <text variable=\"title\"/>\n                </group>\n                <date variable=\"issued\" prefix=\"(\" suffix=\")\">\n                    <date-part name=\"year\"/>\n                </date>\n            </group>\n            <text variable=\"abstract\" display=\"block\"/>\n        </layout>\n    </bibliography>\n</style>", 
+    "input": [
+        {
+            "abstract": "An interesting book by an interesting author.", 
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-1", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Book A", 
+            "type": "book"
+        }, 
+        {
+            "abstract": "An old contribution to a new field.", 
+            "author": [
+                {
+                    "primary-key": "Jones", 
+                    "secondary-key": "Robert", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-2", 
+            "issued": {
+                "year": "2001"
+            }, 
+            "title": "Book B", 
+            "type": "book"
+        }
+    ], 
+    "mode": "bibliography", 
+    "result": "<ul class=\"csl-bib-body\">\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">John Smith, Book A (2000)</span><span class=\"csl-bib-other\"><span class=\"csl-bib-block\">An interesting book by an interesting author.</span></span></li>\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Robert Jones, Book B (2001)</span><span class=\"csl-bib-other\"><span class=\"csl-bib-block\">An old contribution to a new field.</span></span></li>\n</ul>", 
+    "schema": "0.8"
+}

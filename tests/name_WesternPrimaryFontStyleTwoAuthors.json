@@ -1,0 +1,28 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <layout>\n            <names variable=\"author\">\n                <name delimiter=\"; \"/>\n                <name-part type=\"primary-key\" font-weight=\"bold\"/>\n            </names>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false, 
+                    "uri": "http://people.org/doej"
+                }, 
+                {
+                    "primary-key": "Roe", 
+                    "secondary-key": "Jane", 
+                    "sticky": false, 
+                    "uri": "http://people.org/roej"
+                }
+            ], 
+            "id": "item-1", 
+            "issued": "2000", 
+            "title": "Our Anonymous Lives", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "John <b>Doe</b>; Jane <b>Roe</b>", 
+    "schema": "0.8"
+}

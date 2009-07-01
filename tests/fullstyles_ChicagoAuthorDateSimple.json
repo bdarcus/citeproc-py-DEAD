@@ -1,0 +1,205 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" xml:lang=\"en\" class=\"in-text\" >\n  <info>\n    <title>Chicago Manual of Style (Author-Date format)</title>\n    <id>http://www.zotero.org/styles/chicago-author-date</id>\n    <link href=\"http://www.zotero.org/styles/chicago-author-date\"/>\n    <author>\n      <name>Julian Onions</name>\n      <email>julian.onions@gmail.com</email>\n    </author>\n    <category term=\"author-date\"/>\n    <category term=\"generic-base\"/>\n    <updated/>\n    <summary>The author-date variant of the Chicago style</summary>\n    <link href=\"http://www.chicagomanualofstyle.org/tools_citationguide.html\" rel=\"documentation\"/>\n  </info>\n  <macro name=\"secondary-contributors\">\n    <choose>\n      <if type=\"chapter\" match=\"none\">\n    <group delimiter=\". \">\n      <choose>\n        <if variable=\"author\">\n      <names variable=\"editor\">\n        <label form=\"verb-short\" prefix=\" \" text-case=\"capitalize-first\" suffix=\". \"/>\n        <name and=\"text\" delimiter=\", \"/>\n      </names>\n        </if>\n      </choose>\n      <choose>\n        <if variable=\"author editor\" match=\"any\">\n          <names variable=\"translator\">\n            <label form=\"verb-short\" prefix=\" \" text-case=\"capitalize-first\" suffix=\". \"/>\n            <name and=\"text\" delimiter=\", \"/>\n          </names>\n        </if>\n      </choose>\n    </group>\n      </if>\n    </choose>\n  </macro>\n  <macro name=\"container-contributors\">\n    <choose>\n      <if type=\"chapter\">\n    <group prefix=\",\" delimiter=\", \">\n      <choose>\n        <if variable=\"author\">\n      <names variable=\"editor\">\n        <label form=\"verb-short\" prefix=\" \" text-case=\"lowercase\" suffix=\". \"/>\n        <name and=\"text\" delimiter=\", \"/>\n      </names>\n        </if>\n      </choose>\n      <choose>\n        <if variable=\"author editor\" match=\"any\">\n          <names variable=\"translator\">\n            <label form=\"verb-short\" prefix=\" \" text-case=\"lowercase\" suffix=\". \"/>\n            <name and=\"text\" delimiter=\", \"/>\n          </names>\n        </if>\n      </choose>\n    </group>\n      </if>\n    </choose>\n  </macro>\n  <macro name=\"anon\">\n    <choose>\n      <if variable=\"author editor translator\" match=\"none\">\n    <text term=\"anonymous\" form=\"short\" text-case=\"capitalize-first\"/>\n\t  </if>\n\t</choose>\n  </macro>\n  <macro name=\"editor\">\n    <names variable=\"editor\">\n      <name name-as-sort-order=\"first\" and=\"text\" sort-separator=\", \" delimiter=\", \" delimiter-precedes-last=\"always\"/>\n      <label form=\"short\" prefix=\", \" suffix=\".\"/>\n    </names>\n  </macro>\n  <macro name=\"translator\">\n    <names variable=\"translator\">\n      <name name-as-sort-order=\"first\" and=\"text\" sort-separator=\", \" delimiter=\", \" delimiter-precedes-last=\"always\"/>\n      <label form=\"verb-short\" prefix=\", \" suffix=\".\"/>\n    </names>\n  </macro>\n  <macro name=\"recipient\">\n    <choose>\n      <if type=\"personal_communication\">\n    \t<choose>\n\t  \t  <if variable=\"genre\">\n\t\t<text variable=\"genre\" text-case=\"capitalize-first\"/>\n\t  \t  </if>\n\t  \t  <else>\n\t\t<text term=\"letter\" text-case=\"capitalize-first\"/>\n\t\t  </else>\n\t    </choose>\n\t  </if>\n\t</choose>\n    <names variable=\"recipient\" delimiter=\", \">\n      <label form=\"verb\" prefix=\" \" text-case=\"lowercase\" suffix=\" \"/>\n      <name and=\"text\" delimiter=\", \"/>\n    </names>\n  </macro>\n  <macro name=\"contributors\">\n    <names variable=\"author\">\n      <name and=\"text\" name-as-sort-order=\"first\" sort-separator=\", \" delimiter=\", \"\n        delimiter-precedes-last=\"always\"/>\n      <label form=\"verb-short\" prefix=\", \" suffix=\".\" text-case=\"lowercase\"/>\n      <substitute>\n        <text macro=\"editor\"/>\n        <text macro=\"translator\"/>\n      </substitute>\n    </names>\n    <text macro=\"anon\"/>\n    <text macro=\"recipient\"/>\n  </macro>\n  <macro name=\"contributors-short\">\n    <names variable=\"author\">\n      <name form=\"short\" and=\"text\" delimiter=\", \"/>\n      <substitute>\n        <names variable=\"editor\"/>\n        <names variable=\"translator\"/>\n      </substitute>\n    </names>\n    <text macro=\"anon\"/>\n  </macro>\n  <macro name=\"interviewer\">\n    <names variable=\"interviewer\" delimiter=\", \">\n      <label form=\"verb\" prefix=\" \" text-case=\"capitalize-first\" suffix=\" \"/>\n      <name and=\"text\" delimiter=\", \"/>\n    </names>\n  </macro>\n  <macro name=\"archive\">\n    <group delimiter=\". \">\n      <text variable=\"archive_location\" text-case=\"capitalize-first\"/>\n      <text variable=\"archive\"/>\n      <text variable=\"archive-place\"/>\n    </group>\n  </macro>\n  <macro name=\"access\">\n    <group delimiter=\". \">\n\t  <choose>\n\t    <if type=\"graphic report\" match=\"any\">\n      <text macro=\"archive\"/>\n\t    </if>\n\t    <else-if type=\"book thesis chapter article-journal article-newspaper article-magazine\" match=\"none\">\n      <text macro=\"archive\"/>\n\t    </else-if>\n\t  </choose>\n      <text variable=\"DOI\" prefix=\"doi:\"/>\n      <text variable=\"URL\"/>\n    </group>\n  </macro>\n  <macro name=\"title\">\n    <choose>\n      <if variable=\"title\" match=\"none\">\n        <choose>\n          <if type=\"personal_communication\" match=\"none\">\n        <text variable=\"genre\" text-case=\"capitalize-first\"/>\n          </if>\n        </choose>\n      </if>\n      <else-if type=\"book\">\n        <text variable=\"title\" font-style=\"italic\"/>\n      </else-if>\n      <else>\n        <text variable=\"title\"/>\n      </else>\n    </choose>\n  </macro>\n  <macro name=\"edition\">\n    <choose>\n      <if type=\"book chapter\" match=\"any\">\n    <choose>\n      <if is-numeric=\"edition\">\n        <group delimiter=\" \">\n          <number variable=\"edition\" form=\"ordinal\"/>\n          <text term=\"edition\" form=\"short\" suffix=\".\"/>\n        </group>\n      </if>\n      <else>\n        <text variable=\"edition\" suffix=\".\"/>\n      </else>\n    </choose>\n      </if>\n    </choose>\n  </macro>\n  <macro name=\"locators\">\n    <choose>\n      <if type=\"article-journal\">\n        <text variable=\"volume\" prefix=\" \"/>\n        <text variable=\"issue\" prefix=\", no. \"/>\n      </if>\n      <else-if type=\"book\">\n        <group prefix=\". \" delimiter=\". \">\n          <group>\n            <text term=\"volume\" form=\"short\" text-case=\"capitalize-first\" suffix=\". \"/>\n            <number variable=\"volume\" form=\"numeric\"/>\n          </group>\n          <group>\n            <number variable=\"number-of-volumes\" form=\"numeric\"/>\n            <text term=\"volume\" form=\"short\" prefix=\" \" suffix=\".\" plural=\"true\"/>\n          </group>\n        </group>\n      </else-if>\n    </choose>\n  </macro>\n  <macro name=\"locators-chapter\">\n    <choose>\n      <if type=\"chapter\">\n        <group prefix=\", \">\n          <text variable=\"volume\" suffix=\":\"/>\n          <text variable=\"page\"/>\n        </group>\n      </if>\n    </choose>\n  </macro>\n  <macro name=\"locators-article\">\n    <choose>\n      <if type=\"article-newspaper\">\n        <group prefix=\", \" delimiter=\", \">\n          <group>\n        <text variable=\"edition\" suffix=\" \"/>\n        <text term=\"edition\" prefix=\" \"/>\n          </group>\n          <group>\n        <text term=\"section\" form=\"short\" suffix=\". \"/>\n        <text variable=\"section\"/>\n          </group>\n        </group>\n      </if>\n      <else-if type=\"article-journal\">\n    <text variable=\"page\" prefix=\": \"/>\n      </else-if>\n    </choose>\n  </macro>\n  <macro name=\"point-locators\">\n    <group>\n      <choose>\n\t    <if locator=\"page\" match=\"none\">\n\t  <label variable=\"locator\" form=\"short\" include-period=\"true\" suffix=\" \"/>\n\t    </if>\n\t  </choose>\n      <text variable=\"locator\"/>\n\t</group>\n  </macro>\n  <macro name=\"container-prefix\">\n    <text term=\"in\" text-case=\"capitalize-first\"/>\n  </macro>\n  <macro name=\"container-title\">\n    <choose>\n      <if type=\"chapter\">\n        <text macro=\"container-prefix\" suffix=\" \"/>\n      </if>\n    </choose>\n    <text variable=\"container-title\" font-style=\"italic\"/>\n  </macro>\n  <macro name=\"publisher\">\n    <group delimiter=\": \">\n      <text variable=\"publisher-place\"/>\n      <text variable=\"publisher\"/>\n    </group>\n  </macro>\n  <macro name=\"date\">\n    <date variable=\"issued\">\n      <date-part name=\"year\"/>\n    </date>\n  </macro>\n  <macro name=\"day-month\">\n    <date variable=\"issued\">\n      <date-part name=\"month\"/>\n      <date-part name=\"day\" prefix=\" \"/>\n    </date>\n  </macro>\n  <macro name=\"collection-title\">\n    <text variable=\"collection-title\"/>\n    <text variable=\"collection-number\" prefix=\" \"/>\n  </macro>\n  <macro name=\"event\">\n    <group>\n      <text term=\"presented at\" suffix=\" \"/>\n      <text variable=\"event\"/>\n    </group>\n  </macro>\n  <macro name=\"description\">\n    <group delimiter=\". \">\n      <text macro=\"interviewer\"/>\n      <text variable=\"medium\" text-case=\"capitalize-first\"/>\n    </group>\n    <choose>\n      <if variable=\"title\" match=\"none\"> </if>\n      <else-if type=\"thesis\"> </else-if>\n      <else>\n        <text variable=\"genre\" text-case=\"capitalize-first\" prefix=\". \"/>\n      </else>\n    </choose>\n  </macro>\n  <macro name=\"issue\">\n    <choose>\n      <if type=\"article-journal\">\n        <text macro=\"day-month\" prefix=\" (\" suffix=\")\"/>\n      </if>\n      <else-if type=\"speech\">\n        <group prefix=\" \" delimiter=\", \">\n          <text macro=\"event\"/>\n          <text macro=\"day-month\"/>\n          <text variable=\"event-place\"/>\n        </group>\n      </else-if>\n      <else-if type=\"article-newspaper article-magazine\" match=\"any\">\n        <text macro=\"day-month\" prefix=\", \"/>\n      </else-if>\n      <else>\n        <group prefix=\". \" delimiter=\", \">\n          <choose>\n            <if type=\"thesis\">\n              <text variable=\"genre\" text-case=\"capitalize-first\"/>\n            </if>\n          </choose>\n          <text macro=\"publisher\"/>\n          <text macro=\"day-month\"/>\n        </group>\n      </else>\n    </choose>\n  </macro>\n  <citation>\n    <option name=\"et-al-min\" value=\"4\"/>\n    <option name=\"et-al-use-first\" value=\"1\"/>\n    <option name=\"et-al-subsequent-min\" value=\"4\"/>\n    <option name=\"et-al-subsequent-use-first\" value=\"1\"/>\n    <option name=\"disambiguate-add-year-suffix\" value=\"true\"/>\n    <option name=\"disambiguate-add-names\" value=\"true\"/>\n    <option name=\"disambiguate-add-givenname\" value=\"true\"/>\n    <layout prefix=\"(\" suffix=\")\" delimiter=\"; \">\n      <group delimiter=\", \">\n        <group delimiter=\" \">\n          <text macro=\"contributors-short\"/>\n          <text macro=\"date\"/>\n        </group>\n        <text macro=\"point-locators\"/>\n      </group>\n    </layout>\n  </citation>\n  <bibliography>\n    <option name=\"hanging-indent\" value=\"true\"/>\n    <option name=\"et-al-min\" value=\"11\"/>\n    <option name=\"et-al-use-first\" value=\"7\"/>\n    <option name=\"subsequent-author-substitute\" value=\"---\"/>\n    <option name=\"entry-spacing\" value=\"0\"/>\n    <sort>\n      <key macro=\"contributors\"/>\n      <key variable=\"issued\"/>\n    </sort>\n    <layout suffix=\".\">\n      <text macro=\"contributors\" suffix=\". \"/>\n      <text macro=\"date\" suffix=\". \"/>\n      <text macro=\"title\"/>\n      <text macro=\"description\"/>\n      <text macro=\"secondary-contributors\" prefix=\". \"/>\n      <text macro=\"container-title\" prefix=\". \"/>\n      <text macro=\"container-contributors\"/>\n      <text macro=\"locators-chapter\"/>\n      <text macro=\"edition\" prefix=\". \"/>\n      <text macro=\"locators\"/>\n      <text macro=\"collection-title\" prefix=\". \"/>\n      <text macro=\"issue\"/>\n      <text macro=\"locators-article\"/>\n      <text macro=\"access\" prefix=\". \"/>\n    </layout>\n  </bibliography>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-1", 
+            "issued": {
+                "year": "1990"
+            }, 
+            "publisher": "Zardoz Press", 
+            "publisher-place": "Brobdingnag", 
+            "title": "Book A", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Roe", 
+                    "secondary-key": "Jane", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-2", 
+            "issued": {
+                "year": "1991"
+            }, 
+            "title": "Book B", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Roe", 
+                    "secondary-key": "Jane", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Asthma", 
+                    "secondary-key": "Alvin", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-3", 
+            "issued": {
+                "year": "1992"
+            }, 
+            "title": "Book C", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Roe", 
+                    "secondary-key": "Jane", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Asthma", 
+                    "secondary-key": "Alvin", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Bronchitis", 
+                    "secondary-key": "Bob", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Cold", 
+                    "secondary-key": "Chris", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Dropsy", 
+                    "secondary-key": "Don", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Enteritis", 
+                    "secondary-key": "Ernie", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Fever", 
+                    "secondary-key": "Frank", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Goiter", 
+                    "secondary-key": "George", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Hiccup", 
+                    "secondary-key": "Herb", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Impetigo", 
+                    "secondary-key": "Irwin", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-4", 
+            "issued": {
+                "year": "1993"
+            }, 
+            "title": "Book D", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Roe", 
+                    "secondary-key": "Jane", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Asthma", 
+                    "secondary-key": "Alvin", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Bronchitis", 
+                    "secondary-key": "Bob", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Cold", 
+                    "secondary-key": "Chris", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Dropsy", 
+                    "secondary-key": "Don", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Enteritis", 
+                    "secondary-key": "Ernie", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Fever", 
+                    "secondary-key": "Frank", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Goiter", 
+                    "secondary-key": "George", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Hiccup", 
+                    "secondary-key": "Herb", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Impetigo", 
+                    "secondary-key": "Irwin", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Jaudice", 
+                    "secondary-key": "Jeff", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-5", 
+            "issued": {
+                "year": "1994"
+            }, 
+            "title": "Book E", 
+            "type": "book"
+        }
+    ], 
+    "mode": "bibliography", 
+    "result": "<ul class=\"csl-bib-body push-right\">\n<li class=\"csl-bib-entry hanging-indent\"><span class=\"csl-bib-first\">Doe, John. </span><span class=\"csl-bib-other\">1990. <i>Book A</i>. Brobdingnag: Zardoz Press</span></li>\n<li class=\"csl-bib-entry hanging-indent\"><span class=\"csl-bib-first\">Doe, John, and Jane Roe. </span><span class=\"csl-bib-other\">1991. <i>Book B</i></span></li>\n<li class=\"csl-bib-entry hanging-indent\"><span class=\"csl-bib-first\">Doe, John, Jane Roe, and Alvin Asthma. </span><span class=\"csl-bib-other\">1992. <i>Book C</i></span></li>\n<li class=\"csl-bib-entry hanging-indent\"><span class=\"csl-bib-first\">Doe, John, Jane Roe, Alvin Asthma, Bob Bronchitis, Chris Cold, Don Dropsy, Ernie Enteritis, et al. </span><span class=\"csl-bib-other\">1993. <i>Book D</i></span></li>\n<li class=\"csl-bib-entry hanging-indent\"><span class=\"csl-bib-first\">Doe, John, Jane Roe, Alvin Asthma, Bob Bronchitis, Chris Cold, Don Dropsy, Ernie Enteritis, et al. </span><span class=\"csl-bib-other\">1994. <i>Book E</i></span></li>\n</ul>", 
+    "schema": "0.9"
+}

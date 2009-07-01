@@ -1,0 +1,25 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <layout>\n            <names variable=\"author\">\n                <name initialize-with=\".\"/>\n            </names>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Tserendorj", 
+                    "secondary-key": "TSerendorjiin", 
+                    "sticky": false
+                }
+            ], 
+            "id": "simple-mongolian-name-1", 
+            "issued": {
+                "day": "4", 
+                "month": "3", 
+                "year": "1925"
+            }, 
+            "title": "An Altogether Unknown History of Soviet-Mongolian Relations", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "Ts. Tserendorj", 
+    "schema": "0.8"
+}

@@ -1,0 +1,54 @@
+{
+    "citations": [
+        [
+            [
+                "ITEM-1", 
+                {
+                    "suppress-author": 1
+                }
+            ]
+        ], 
+        [
+            [
+                "ITEM-2", 
+                {}
+            ]
+        ]
+    ], 
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n  <citation>\n    <layout font-style=\"italic\">\n      <text variable=\"citation-number\" prefix=\"[\" suffix=\"]\"/>\n    </layout>\n  </citation>\n  <bibliography>\n    <layout>\n      <text variable=\"title\"/>\n    </layout>\n  </bibliography>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-1", 
+            "issued": {
+                "year": "2005"
+            }, 
+            "title": "Book A", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Jones", 
+                    "secondary-key": "Robert", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-2", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Book B", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "<i>[1]</i>\n<i>[2]</i>", 
+    "schema": "0.8"
+}

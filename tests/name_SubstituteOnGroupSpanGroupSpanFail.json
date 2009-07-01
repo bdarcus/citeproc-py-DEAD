@@ -1,0 +1,22 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <layout>\n            <names variable=\"editor\">\n                <name/>\n                <substitute>\n                    <names variable=\"translator\"/>\n                    <group>\n                        <text variable=\"title\"/>\n\t\t\t\t\t\t<text value=\" (this should appear)\"/>\n                    </group>\n                    <group>\n                        <text value=\"Ooops\" prefix=\" aiyeeee! \"/>\n                        <text value=\" ... this should NOT appear\"/>\n                    </group>\n                </substitute>\n            </names>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "edition": "5", 
+            "id": "item-1", 
+            "issued": "2000", 
+            "title": "His Anonymous Life", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "His Anonymous Life (this should appear)", 
+    "schema": "0.8"
+}

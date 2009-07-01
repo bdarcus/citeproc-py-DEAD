@@ -1,0 +1,51 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <option name=\"et-al-min\" value=\"6\"/>\n        <option name=\"et-al-use-first\" value=\"5\"/>\n        <layout delimiter=\"; \">\n            <names variable=\"author\">\n                <name delimiter=\", \"/>\n\t\t        <name-part type=\"primary-key\" text-case=\"uppercase\"/>\n\t\t        <et-al font-style=\"italic\"/>\n            </names>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "\u0427\u0430\u0439\u043a\u043e\u0432\u0441\u043a\u0438\u0439", 
+                    "secondary-key": "\u041f\u0451\u0442\u0440 \u0418\u043b\u044c\u0438\u0447", 
+                    "sticky": false
+                }, 
+                {
+                    "prefix": "van", 
+                    "primary-key": "Winkle", 
+                    "secondary-key": "Rip", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "\u6211\u59bb", 
+                    "secondary-key": "\u6804", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Thucydides", 
+                    "secondary-key": "Carl", 
+                    "sticky": false, 
+                    "suffix": "III"
+                }, 
+                {
+                    "primary-key": "Tokugawa", 
+                    "secondary-key": "Ieyasu", 
+                    "sticky": true
+                }, 
+                {
+                    "literal": "Ministry of Fear, Loathing and Error", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Prince", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-1", 
+            "issued": "2000", 
+            "title": "Our Story", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "\u041f\u0451\u0442\u0440 \u0418\u043b\u044c\u0438\u0447 \u0427\u0410\u0419\u041a\u041e\u0412\u0421\u041a\u0418\u0419, Rip van WINKLE, \u6211\u59bb\u6804, Carl THUCYDIDES III, TOKUGAWA Ieyasu<i>et al.</i>", 
+    "schema": "0.8"
+}

@@ -1,0 +1,53 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <layout delimiter=\";\">\n            <option name=\"year-suffix-delimiter\" value=\",\"/>\n            <option name=\"disambiguate-add-year-suffix\" value=\"true\"/>\n            <option name=\"collapse\" value=\"year-suffix\"/>\n            <group delimiter=\" \">\n                <names variable=\"author\">\n                    <name form=\"short\"/>\n                </names>\n                <date variable=\"issued\">\n                    <date-part name=\"year\"/>\n                </date>\n            </group>\n            <text variable=\"year-suffix\"/>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-1", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Paper 1", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-2", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Paper 2", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-3", 
+            "issued": {
+                "year": "2001"
+            }, 
+            "title": "Paper 3", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "Doe 2000a,b;2001", 
+    "schema": "0.8"
+}

@@ -1,0 +1,39 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <layout prefix=\"[\" suffix=\"]\" delimiter=\"; \">\n            <names variable=\"author\" prefix=\"[X]\">\n                <name/>\n\t            <label form=\"short\" prefix=\" (\" suffix=\".)\"/>\n                <substitute>\n                    <names variable=\"editor\"/>\n                </substitute>\n            </names>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "editor": [
+                {
+                    "primary-key": "Roe", 
+                    "secondary-key": "Jane", 
+                    "sticky": false
+                }
+            ], 
+            "id": "item-1", 
+            "issued": "2000", 
+            "title": "Her Anonymous Anthology", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false, 
+                    "uri": "http://people.org/doej"
+                }
+            ], 
+            "id": "simple-western-name-1", 
+            "issued": {
+                "day": "1", 
+                "month": "6", 
+                "year": "1965"
+            }, 
+            "title": "His Anonymous Life", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "[[X]Jane Roe (ed.); [X]John Doe]", 
+    "schema": "0.8"
+}

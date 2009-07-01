@@ -1,0 +1,50 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <terms>\n        <locale xml:lang=\"en\">\n            <term name=\"editortranslator\" form=\"short\">\n                <single>ed. &amp; trans.</single>\n                <multiple>eds. &amp; trans.</multiple>\n            </term>\n        </locale>\n    </terms>\n    <citation>\n        <option name=\"et-al-min\" value=\"3\"/>\n        <option name=\"et-al-use-first\" value=\"1\"/>\n        <layout delimiter=\"; \">\n            <names variable=\"editor translator\" delimiter=\", \">\n                <name delimiter=\", \"/>\n                <label form=\"short\" prefix=\" (\" suffix=\".)\"/>\n            </names>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "editor": [
+                {
+                    "primary-key": "Asthma", 
+                    "secondary-key": "Albert", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Bronchitis", 
+                    "secondary-key": "Bosworth", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Cold", 
+                    "secondary-key": "Crispin", 
+                    "sticky": false
+                }
+            ], 
+            "id": "editor-translator-2", 
+            "issued": {
+                "year": "1990"
+            }, 
+            "title": "Book One", 
+            "translator": [
+                {
+                    "primary-key": "Asthma", 
+                    "secondary-key": "Albert", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Bronchitis", 
+                    "secondary-key": "Bosworth", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Cold", 
+                    "secondary-key": "Constantine", 
+                    "sticky": false
+                }
+            ], 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "Albert Asthma, et al. (eds.), Albert Asthma, et al. (trans.)", 
+    "schema": "0.8"
+}

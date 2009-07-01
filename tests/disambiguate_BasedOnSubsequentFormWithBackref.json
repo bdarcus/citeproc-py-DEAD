@@ -1,0 +1,120 @@
+{
+    "citations": [
+        [
+            [
+                "ITEM-1", 
+                {
+                    "note-number": "1"
+                }
+            ], 
+            [
+                "ITEM-2", 
+                {
+                    "note-number": "1"
+                }
+            ]
+        ], 
+        [
+            [
+                "ITEM-3", 
+                {
+                    "note-number": "2"
+                }
+            ]
+        ], 
+        [
+            [
+                "ITEM-4", 
+                {
+                    "note-number": "3"
+                }
+            ]
+        ], 
+        [
+            [
+                "ITEM-1", 
+                {
+                    "first-reference-note-number": "1", 
+                    "note-number": "4", 
+                    "position": 1
+                }
+            ]
+        ], 
+        [
+            [
+                "ITEM-3", 
+                {
+                    "first-reference-note-number": "2", 
+                    "note-number": "5", 
+                    "position": 1
+                }
+            ]
+        ]
+    ], 
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n  <citation>\n    <layout delimiter=\"; \" suffix=\".\">\n      <choose>\n        <if position=\"subsequent\">\n          <names variable=\"author\">\n            <name form=\"short\"/>\n          </names>\n          <choose>\n            <if disambiguate=\"true\">\n              <text variable=\"title\" prefix=\", \"/>\n            </if>\n          </choose>\n          <text value=\"supra note\" prefix=\", \" suffix=\" \"/>\n          <number variable=\"first-reference-note-number\"/>\n        </if>\n        <else>\n          <names variable=\"author\">\n            <name/>\n          </names>\n          <text variable=\"title\" prefix=\", \"/>\n          <date variable=\"issued\">\n            <date-part name=\"year\" prefix=\" (\" suffix=\")\"/>\n          </date>\n        </else>\n      </choose>\n    </layout>\n  </citation>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-1", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "His Book", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-2", 
+            "issued": {
+                "year": "2001"
+            }, 
+            "title": "His Other Book", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Roe", 
+                    "secondary-key": "Jane", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-3", 
+            "issued": {
+                "year": "1998"
+            }, 
+            "title": "Her Book", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Roe", 
+                    "secondary-key": "Jane", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-4", 
+            "issued": {
+                "year": "1999"
+            }, 
+            "title": "Her Other Book", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "Doe, His Book (2000); Doe, His Other Book (2001).\nRoe, Her Book (1998).\nRoe, Her Other Book (1999).\nDoe, His Book, supra note 1.\nRoe, Her Book, supra note 2.", 
+    "schema": "0.9"
+}

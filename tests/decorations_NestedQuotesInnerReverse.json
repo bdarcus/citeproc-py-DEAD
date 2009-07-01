@@ -1,0 +1,13 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <layout>\n            <text variable=\"title\"/>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "id": "item-1", 
+            "title": "My '\"Amazing\" <span name=\"foreign-word\">and</span> Bogus' Title", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "My &ldquo;&lsquo;Amazing&rsquo; <b>and</b> Bogus&rdquo; Title", 
+    "schema": "0.8"
+}

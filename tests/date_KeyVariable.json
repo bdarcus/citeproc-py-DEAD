@@ -1,0 +1,44 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <layout>\n\t\t    <text variable=\"title\"/>\n        </layout>\n    </citation>\n    <bibliography>\n        <sort>\n            <key variable=\"issued\" sort=\"descending\"/>\n        </sort>\n        <layout>\n            <text variable=\"title\"/>\n        </layout>\n    </bibliography>\n</style>", 
+    "input": [
+        {
+            "id": "ITEM-1", 
+            "issued": {
+                "day": "15", 
+                "month": "2", 
+                "year": "2000"
+            }, 
+            "title": "Book C", 
+            "type": "book"
+        }, 
+        {
+            "id": "ITEM-2", 
+            "issued": {
+                "day": "15", 
+                "month": "12", 
+                "year": "2000"
+            }, 
+            "title": "Book B", 
+            "type": "book"
+        }, 
+        {
+            "id": "ITEM-3", 
+            "issued": {
+                "year": "2001"
+            }, 
+            "title": "Book A", 
+            "type": "book"
+        }, 
+        {
+            "id": "ITEM-4", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Book D", 
+            "type": "book"
+        }
+    ], 
+    "mode": "bibliography", 
+    "result": "<ul class=\"csl-bib-body\">\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Book A</span></li>\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Book B</span></li>\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Book C</span></li>\n<li class=\"csl-bib-entry\"><span class=\"csl-bib-first\">Book D</span></li>\n</ul>", 
+    "schema": "0.8"
+}

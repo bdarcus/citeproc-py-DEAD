@@ -1,0 +1,28 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <option name=\"et-al-min\" value=\"2\"/>\n        <option name=\"et-al-use-first\" value=\"1\"/>\n        <layout>\n            <names variable=\"editor\">\n                <name delimiter=\", \"/>\n                <label prefix=\" (\" suffix=\")\"/>\n            </names>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "editor": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false, 
+                    "uri": "http://people.org/doej"
+                }, 
+                {
+                    "primary-key": "Roe", 
+                    "secondary-key": "Jane", 
+                    "sticky": false, 
+                    "uri": "http://people.org/doej"
+                }
+            ], 
+            "id": "item-1", 
+            "issued": "2000", 
+            "title": "His Anonymous Life", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "John Doe, et al. (editors)", 
+    "schema": "0.8"
+}

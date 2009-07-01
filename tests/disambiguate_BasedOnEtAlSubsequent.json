@@ -1,0 +1,92 @@
+{
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <option name=\"et-al-min\" value=\"3\"/>\n        <option name=\"et-al-use-first\" value=\"3\"/>\n        <option name=\"et-al-subsequent-min\" value=\"1\"/>\n        <option name=\"et-al-subsequent-use-first\" value=\"1\"/>\n        <option name=\"disambiguate-add-year-suffix\" value=\"true\"/>\n        <layout delimiter=\"; \" prefix=\"(\" suffix=\")\">\n            <names variable=\"author\">\n                <name and=\"symbol\" form=\"short\" delimiter=\", \" delimiter-precedes-last=\"never\"/>\n            </names>\n            <date variable=\"issued\" prefix=\" \">\n                <date-part name=\"year\"/>\n            </date>\n            <text variable=\"year-suffix\" font-style=\"italic\"/>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Baur", 
+                    "secondary-key": "Bruno", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Fr\u00f6berg", 
+                    "secondary-key": "Lars", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Baur", 
+                    "secondary-key": "Anette", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Guggenheim", 
+                    "secondary-key": "Richard", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Haase", 
+                    "secondary-key": "Martin", 
+                    "sticky": false
+                }
+            ], 
+            "container-title": "Nordic Journal of Botany", 
+            "id": "ITEM-1", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "page-range": "119-128", 
+            "title": "Ultrastructure of snail grazing damage to calcicolous lichens", 
+            "type": "article-journal", 
+            "volume": "20"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Baur", 
+                    "secondary-key": "Bruno", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Schileyko", 
+                    "secondary-key": "Anatoly A.", 
+                    "sticky": false
+                }, 
+                {
+                    "primary-key": "Baur", 
+                    "secondary-key": "Anette", 
+                    "sticky": false
+                }
+            ], 
+            "container-title": "Journal of Molluscan Studies", 
+            "id": "ITEM-2", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "page-range": "285-289", 
+            "title": "Ecological observations on _Arianta aethiops aethiops_ (Helicidae), a land snail endemic to the South Carpathian mountains, Romania", 
+            "type": "article-journal", 
+            "volume": "66"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "container-title": "Journal of Irreproducible Results", 
+            "id": "ITEM-3", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "page-range": "000-1", 
+            "title": "Some bogus title", 
+            "type": "article-journal", 
+            "volume": "666"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "(Baur, Fr\u00f6berg, Baur, et al. 2000<i>a</i>; Baur, Schileyko & Baur 2000<i>b</i>; Doe 2000)", 
+    "schema": "0.9"
+}

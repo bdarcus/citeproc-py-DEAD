@@ -1,0 +1,56 @@
+{
+    "citations": [
+        [
+            [
+                "ITEM-1", 
+                {
+                    "suppress-author": 1
+                }
+            ]
+        ], 
+        [
+            [
+                "ITEM-2", 
+                {}
+            ]
+        ]
+    ], 
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n  <citation>\n    <layout prefix=\"(\" suffix=\")\" delimiter=\"; \">\n      <group delimiter=\" \">\n        <names variable=\"author\">\n          <name/>\n          <substitute>\n            <text variable=\"title\"/>\n          </substitute>\n        </names>\n        <date variable=\"issued\">\n          <date-part name=\"year\"/>\n        </date>\n      </group>\n    </layout>\n  </citation>\n</style>", 
+    "input": [
+        {
+            "abstract": "An interesting book by an interesting author.", 
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-1", 
+            "issued": {
+                "year": "2005"
+            }, 
+            "title": "Book A", 
+            "type": "book"
+        }, 
+        {
+            "abstract": "An old contribution to a new field.", 
+            "author": [
+                {
+                    "primary-key": "Jones", 
+                    "secondary-key": "Robert", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-2", 
+            "issued": {
+                "year": "2000"
+            }, 
+            "title": "Book B", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "(2005)\n(Robert Jones 2000)", 
+    "schema": "0.8"
+}

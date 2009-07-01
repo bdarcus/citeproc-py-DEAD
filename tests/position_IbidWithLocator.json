@@ -1,0 +1,41 @@
+{
+    "citations": [
+        [
+            [
+                "ITEM-1", 
+                {}
+            ]
+        ], 
+        [
+            [
+                "ITEM-1", 
+                {
+                    "label": "page", 
+                    "locator": "23", 
+                    "position": 3
+                }
+            ]
+        ]
+    ], 
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n  <citation>\n\t<layout suffix=\".\">\n      <choose>\n        <if position=\"ibid-with-locator\">\n          <text term=\"ibid\"/>\n          <label variable=\"locator\" prefix=\" \" include-period=\"true\" form=\"short\"/>\n          <text variable=\"locator\" prefix=\" \"/>\n        </if>\n        <else>\n          <group delimiter=\" \">\n            <names variable=\"author\">\n              <name form=\"short\"/>\n            </names>\n            <text variable=\"title\" quotes=\"true\"/>\n            <date variable=\"issued\" prefix=\"(\" suffix=\")\">\n              <date-part name=\"year\"/>\n            </date>\n          </group>\n        </else>\n      </choose>\n    </layout>\n  </citation>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Appleton", 
+                    "secondary-key": "Victor", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-1", 
+            "issued": {
+                "year": "1910"
+            }, 
+            "title": "Tom Swift and His Electric Runabout", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "Appleton &ldquo;Tom Swift and His Electric Runabout&rdquo; (1910).\nIbid p. 23.", 
+    "schema": "0.9"
+}

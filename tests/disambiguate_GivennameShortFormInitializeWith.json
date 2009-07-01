@@ -1,0 +1,91 @@
+{
+    "citations": [
+        [
+            [
+                "ITEM-1", 
+                {}
+            ]
+        ], 
+        [
+            [
+                "ITEM-2", 
+                {}
+            ], 
+            [
+                "ITEM-3", 
+                {}
+            ]
+        ], 
+        [
+            [
+                "ITEM-4", 
+                {}
+            ], 
+            [
+                "ITEM-5", 
+                {}
+            ]
+        ]
+    ], 
+    "csl": "<style xmlns=\"http://purl.org/net/xbiblio/csl\" class=\"in-text\" xml:lang=\"en\">\n    <citation>\n        <option name=\"disambiguate-add-givenname\" value=\"true\"/>\n        <layout delimiter=\"; \">\n            <names variable=\"author\">\n                <name form=\"short\" initialize-with=\"\"/>\n            </names>\n        </layout>\n    </citation>\n</style>", 
+    "input": [
+        {
+            "author": [
+                {
+                    "primary-key": "Roe", 
+                    "secondary-key": "Jane", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-1", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "John", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-2", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Doe", 
+                    "secondary-key": "Aloysius", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-3", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "Thomas", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-4", 
+            "type": "book"
+        }, 
+        {
+            "author": [
+                {
+                    "primary-key": "Smith", 
+                    "secondary-key": "Ted", 
+                    "sticky": false
+                }
+            ], 
+            "id": "ITEM-5", 
+            "type": "book"
+        }
+    ], 
+    "mode": "citation", 
+    "result": "Roe\nJ Doe; A Doe\nSmith; Smith", 
+    "schema": "0.8"
+}

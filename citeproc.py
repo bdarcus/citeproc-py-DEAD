@@ -1,63 +1,177 @@
-
+# would prefer to use cElementTree here for speed and memory, but 
+# a) there seems to be a parsing bug, and b) CSL files are small
+from xml.etree.cElementTree import ElementTree
 import json
-from csl.processor import *
-from lxml import etree
-import os
 
-styles_index = json.loads(open(os.path.expanduser('~/.csl/styles/index.json')).read())
+CSLNS = '{http://purl.org/net/xbiblio/csl}'
 
-
-def list_styles():
-    print("\nStyles\n======\n")
-    for id in styles_index:
-        print(id)
-
-
-def update_styles():
+class Style(ElementTree):
     """
-    Updates the users' style repository.
+    An ElementTree wrapper to easily parse and work with a CSL instance.
     """
-    for styles in styles_index['styles']:
-        style.update(style['id'])
+
+    def __init__(self, csl_fname):
+        _style = self.parse(csl_fname)
+        _info = _style.find(CSLNS + 'info')
+        self.title = _info.find(CSLNS + 'title').text
+        self.updated = _info.find(CSLNS + 'updated').text
+        self.macros = _style.findall(CSLNS + 'macro')
+        self.citation = _style.find(CSLNS + 'citation')
+        self.bibliography = _style.find(CSLNS + 'bibliography')
+        self.citation.layout = self.citation.find(CSLNS + 'layout') 
+        self.citation.options = self.citation.findall(CSLNS + 'option')
+        self.bibliography.options = self.bibliography.findall(CSLNS + 'option')
+        self.bibliography.layout = self.bibliography.find(CSLNS + 'layout')
+
+    def get_macro(name):
+        pass
 
 
-def old(style_id):
+
+class FormattedNode:
     """
-    Compare the last update date-time-stamp against the server 
-    version. 
+    The formatted output.
     """
-    return(style_id['updated'] == get_style_updated(style_id['link']))
+    def __init__(self, field, content, style=None, prefix=None, suffix=None, 
+                 quote=False, block=False, href=None):
+        self.field = field
+        self.content = content
+        self.style = style
+        self.prefix = prefix
+        self.suffix = suffix
+        self.block = block
+        self.quote = quote
+
+    def to_html(rdfa=False):
+        result = ""
+        result += self.prefix
+        result += self.content
+        result += self.suffix
+        return(result)
 
 
-def update(style_id):
+
+class FormattedList:
+    """
+    The formatted output.
+    """
+    def __init__(self, items, delimiter=None, prefix=None, suffix=None, block=False):
+        self.items = items
+        self.prefix = prefix
+        self.suffix = suffix
+        self.block = block
+
+
+
+class FormattedCitationCluster(FormattedList):
     pass
 
 
-def get_style(style_id):
-    fn = styles_index[style_id]['file']
-    path = os.path.expanduser('~/.csl/styles/' + fn) 
-    return(open(path, 'rb'))
+
+class FormattedReferenceList(FormattedList):
+    pass
 
 
-def validate_style(style_id):
-    schema = open(os.path.expanduser('~/.csl/schema/csl.rng'), 'rb')
-    relaxng = etree.RelaxNG(file=schema)
-    style = get_style(style_id)
-    return(relaxng.validate(etree.parse(style)))
 
-
-def process_bibliography(style_id, references):
+def sortkey(reference, style, context='bibliography'):
     """
-    With a style ID/URI and a list of references, format the bibliography.
-
-    >>> process_bibliography('http://zotero.org/styles/aag', '')
-    'ERROR: your CSL style is not valid.'
-    >>> process_bibliography('http://zotero.org/styles/apa', '')
-    'OK, let's run it.'
+    When given a Reference and a Style, returns a sorting key.
     """
-    if validate_style(style_id):
-        print("OK, let's run it.")
-    else:
-        print("ERROR: your CSL style is not valid.")
+    return(reference['title'], reference['date'])
+
+
+def process_group(node, item):
+    pass
+
+
+def process_names(node, item):
+    pass
+
+
+def process_choose(node, item):
+    pass
+
+
+def process_text(node, item):
+    fstyle = node.get('font-style')
+    fweight = node.get('font-weight')
+    fvariant = node.get('font-variant')
+    prefix = node.get('prefix')
+    suffix = node.get('suffix')
+    content = item[node.get('variable')] # or grab the macro result
+    formatted_node = FormattedNode()
+    return(formatted_node)
+
+
+def process_node(node, item):
+    """
+    """
+    if node.tag == NS_CSL + "group":
+        process_group(node, item)
+    elif node.tag == NS_CSL + "names":
+        process_names(node, item)
+    elif node.tag == NS_CSL + "choose":
+        process_choose(node, item)
+    elif node.tag == NS_CSL + "text":
+        process_text(node, item)
+
+
+def process_citations(style, reference_list, citation, mode='html'):
+    """
+    With a Style, a list of References and the list of citation groups 
+    (the list of citations with their locator), produce the for 
+    FormattedOutput each citation group.
+    """
+    formatted_citation = [[process_node(node, citeref) for node in style.citation.layout] 
+                             for citeref in citation]
+
+    return(formatted_citation)
+
+
+def process_bibliography(style, reference_list):
+    """
+    With a Style and the list of References produce the FormattedOutput 
+    for the bibliography.  
+    """
+    formatted_list = [[process_node(node, item) for node in style.bibliography.layout] 
+                         for item in reference_list]
+
+    return(formatted_list)
+
+
+def citeproc(style, reference_list):
+    """
+    With a Style, a list of References and the list of citation 
+    groups (the list of citations with their locator), produce the 
+    FormattedOutput for each citation group and the bibliography.
+    """
+    pass
+
+
+
+def proc_biblio(style, reference_list):
+    """
+    With a Style and a sorted list of References produce the evaluated 
+    output for the bibliography.
+    """
+    pass
+
+
+
+def proc_refs(style, reference_list):
+    """
+    Given the CSL Style and the list of References sort the list according 
+    to the Style and assign the citation number to each Reference.
+    """
+    pass
+
+
+def refs_year_suffix(reference_list):
+    """
+    Given the list of References, compare year and contributors' names and, 
+    when they collide, generate a suffix to append to the year for 
+    disambiguation.
+    """
+    pass
 
 

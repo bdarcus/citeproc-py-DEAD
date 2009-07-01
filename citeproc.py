@@ -1,6 +1,6 @@
 # would prefer to use cElementTree here for speed and memory, but 
 # a) there seems to be a parsing bug, and b) CSL files are small
-from xml.etree.cElementTree import ElementTree
+from xml.etree.ElementTree import ElementTree
 import json
 
 CSLNS = '{http://purl.org/net/xbiblio/csl}'

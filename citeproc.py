@@ -18,10 +18,21 @@ class Style(ElementTree):
         self.macros = _style.findall(CSLNS + 'macro')
         self.citation = _style.find(CSLNS + 'citation')
         self.bibliography = _style.find(CSLNS + 'bibliography')
-        self.citation.layout = self.citation.find(CSLNS + 'layout') 
-        self.citation.options = self.citation.findall(CSLNS + 'option')
-        self.bibliography.options = self.bibliography.findall(CSLNS + 'option')
-        self.bibliography.layout = self.bibliography.find(CSLNS + 'layout')
+        
+        if self.citation:
+            self.citation.layout = self.citation.find('{http://purl.org/net/xbiblio/csl}layout')
+            self.citation.options = self.citation.findall('{http://purl.org/net/xbiblio/csl}option')
+        else:
+            self.citation.layout = None
+            self.citation.options = None
+
+        if self.bibliography:
+            self.bibliography.options = self.bibliography.find('{http://purl.org/net/xbiblio/csl}option')
+            self.bibliography.layout = self.bibliography.find('{http://purl.org/net/xbiblio/csl}layout')
+        else:
+            self.bibliography.options = None
+            self.bibliography.layout = None
+
 
     def get_macro(name):
         pass

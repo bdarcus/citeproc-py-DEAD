@@ -22,17 +22,10 @@ class Style(ElementTree):
         if self.citation:
             self.citation.layout = self.citation.find('{http://purl.org/net/xbiblio/csl}layout')
             self.citation.options = self.citation.findall('{http://purl.org/net/xbiblio/csl}option')
-        else:
-            self.citation.layout = None
-            self.citation.options = None
 
         if self.bibliography:
             self.bibliography.options = self.bibliography.find('{http://purl.org/net/xbiblio/csl}option')
             self.bibliography.layout = self.bibliography.find('{http://purl.org/net/xbiblio/csl}layout')
-        else:
-            self.bibliography.options = None
-            self.bibliography.layout = None
-
 
     def get_macro(name):
         pass

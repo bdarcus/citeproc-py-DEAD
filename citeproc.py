@@ -5,6 +5,8 @@ import json
 
 CSLNS = '{http://purl.org/net/xbiblio/csl}'
 
+# >>> classes <<<
+
 class Style(ElementTree):
     """
     An ElementTree wrapper to easily parse and work with a CSL instance.
@@ -65,17 +67,13 @@ class FormattedList:
         self.suffix = suffix
         self.block = block
 
-
-
 class FormattedCitationCluster(FormattedList):
     pass
-
-
 
 class FormattedReferenceList(FormattedList):
     pass
 
-
+# >>> processing functions <<<
 
 def sortkey(reference, style, context='bibliography'):
     """
@@ -83,18 +81,14 @@ def sortkey(reference, style, context='bibliography'):
     """
     return(reference['title'], reference['date'])
 
-
 def process_group(node, item):
     pass
-
 
 def process_names(node, item):
     pass
 
-
 def process_choose(node, item):
     pass
-
 
 def process_text(node, item):
     fstyle = node.get('font-style')
@@ -105,7 +99,6 @@ def process_text(node, item):
     content = item[node.get('variable')] # or grab the macro result
     formatted_node = FormattedNode()
     return(formatted_node)
-
 
 def process_node(node, item):
     """
@@ -119,8 +112,7 @@ def process_node(node, item):
     elif node.tag == NS_CSL + "text":
         process_text(node, item)
 
-
-def process_citations(style, reference_list, citation, mode='html'):
+def process_citation(style, reference_list, citation, mode='html'):
     """
     With a Style, a list of References and the list of citation groups 
     (the list of citations with their locator), produce the for 
@@ -130,7 +122,6 @@ def process_citations(style, reference_list, citation, mode='html'):
                              for citeref in citation]
 
     return(formatted_citation)
-
 
 def process_bibliography(style, reference_list):
     """
@@ -142,7 +133,6 @@ def process_bibliography(style, reference_list):
 
     return(formatted_list)
 
-
 def citeproc(style, reference_list):
     """
     With a Style, a list of References and the list of citation 
@@ -151,31 +141,10 @@ def citeproc(style, reference_list):
     """
     pass
 
-
-
-def proc_biblio(style, reference_list):
-    """
-    With a Style and a sorted list of References produce the evaluated 
-    output for the bibliography.
-    """
-    pass
-
-
-
-def proc_refs(style, reference_list):
-    """
-    Given the CSL Style and the list of References sort the list according 
-    to the Style and assign the citation number to each Reference.
-    """
-    pass
-
-
-def refs_year_suffix(reference_list):
+def add_year_suffix(reference_list):
     """
     Given the list of References, compare year and contributors' names and, 
     when they collide, generate a suffix to append to the year for 
     disambiguation.
     """
     pass
-
-

@@ -103,13 +103,13 @@ def process_text(node, item):
 def process_node(node, item):
     """
     """
-    if node.tag == NS_CSL + "group":
+    if node.tag == CSLNS + "group":
         process_group(node, item)
-    elif node.tag == NS_CSL + "names":
+    elif node.tag == CSLNS + "names":
         process_names(node, item)
-    elif node.tag == NS_CSL + "choose":
+    elif node.tag == CSLNS + "choose":
         process_choose(node, item)
-    elif node.tag == NS_CSL + "text":
+    elif node.tag == CSLNS + "text":
         process_text(node, item)
 
 def process_citation(style, reference_list, citation, mode='html'):

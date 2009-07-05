@@ -104,6 +104,7 @@ def process_text(node, item):
 def process_node(node, item):
     """
     """
+    # need to first check if the item variable is present
     if node.tag == CSLNS + "group":
         process_group(node, item)
     elif node.tag == CSLNS + "names":

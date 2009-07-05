@@ -96,8 +96,9 @@ def process_text(node, item):
     fvariant = node.get('font-variant')
     prefix = node.get('prefix')
     suffix = node.get('suffix')
-    content = item[node.get('variable')] # or grab the macro result
-    formatted_node = FormattedNode()
+    variable = node.get('variable')
+    content = item[node.get('variable')] if variable in item else None
+    formatted_node = FormattedNode(field=variable, content=content)
     return(formatted_node)
 
 def process_node(node, item):
@@ -110,7 +111,7 @@ def process_node(node, item):
     elif node.tag == CSLNS + "choose":
         process_choose(node, item)
     elif node.tag == CSLNS + "text":
-        process_text(node, item)
+        return(process_text(node, item))
 
 def process_citation(style, reference_list, citation, mode='html'):
     """

@@ -98,7 +98,7 @@ def process_text(node, item):
     suffix = node.get('suffix')
     variable = node.get('variable')
     content = item[node.get('variable')] if variable in item else None
-    formatted_node = FormattedNode(field=variable, content=content)
+    formatted_node = FormattedNode(field=variable, content=content, prefix=prefix, suffix=suffix)
     return(formatted_node)
 
 def process_node(node, item):

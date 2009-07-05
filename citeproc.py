@@ -38,21 +38,18 @@ class FormattedNode:
     """
     The formatted output.
     """
-    def __init__(self, field, content, style=None, prefix=None, suffix=None, 
-                 quote=False, block=False, href=None):
-        self.field = field
+    def __init__(self, variable, content, formatting=None):
+        self.variable = variable
         self.content = content
-        self.style = style
-        self.prefix = prefix
-        self.suffix = suffix
-        self.block = block
-        self.quote = quote
+        self.formatting = formatting
 
-    def to_html(rdfa=False):
+    def to_html(self, rdfa=False):
         result = ""
-        result += self.prefix
+        if self.formatting.prefix:
+            result += self.formatting.prefix
         result += self.content
-        result += self.suffix
+        if self.formatting.suffix:
+            result += self.formatting.suffix
         return(result)
 
 
@@ -65,6 +62,18 @@ class FormattedList:
         self.items = items
         self.prefix = prefix
         self.suffix = suffix
+        self.block = block
+
+class FormattingAttributes:
+    def __init__(self, fweight=None, fstyle=None, fvariant=None, 
+                 prefix=None, suffix=None, delimiter=None, quote=False, block=False):
+        self.fweight = fweight
+        self.fstyle = fstyle
+        self.fvariant = fvariant
+        self.prefix = prefix
+        self.suffix = suffix
+        self.delimiter = delimiter
+        self.quote = quote
         self.block = block
 
 class FormattedCitationCluster(FormattedList):
@@ -90,27 +99,32 @@ def process_names(node, item):
 def process_choose(node, item):
     pass
 
-def process_text(node, item):
+def extract_formatting(node):
     fstyle = node.get('font-style')
     fweight = node.get('font-weight')
     fvariant = node.get('font-variant')
     prefix = node.get('prefix')
     suffix = node.get('suffix')
+    return(FormattingAttributes(fstyle=fstyle, fweight=fweight, fvariant=fvariant, 
+                                prefix=prefix, suffix=suffix))
+
+def process_text(node, item):
+    formatting = extract_formatting(node)
+    print(formatting)
     variable = node.get('variable')
     content = item[node.get('variable')] if variable in item else None
-    formatted_node = FormattedNode(field=variable, content=content, prefix=prefix, suffix=suffix)
+    formatted_node = FormattedNode(variable=variable, content=content, formatting=formatting)
     return(formatted_node)
 
 def process_node(node, item):
     """
     """
-    # need to first check if the item variable is present
     if node.tag == CSLNS + "group":
-        process_group(node, item)
+        return(process_group(node, item))
     elif node.tag == CSLNS + "names":
-        process_names(node, item)
+        return(process_names(node, item))
     elif node.tag == CSLNS + "choose":
-        process_choose(node, item)
+        return(process_choose(node, item))
     elif node.tag == CSLNS + "text":
         return(process_text(node, item))
 

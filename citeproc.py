@@ -138,23 +138,27 @@ def process_citation(style, reference_list, citation, format='html'):
 
     return(formatted_citation)
 
-def process_bibliography(style, reference_list, format='html'):
+def process_bibliography(style, reference_list):
     """
     With a Style and the list of References produce the FormattedOutput 
     for the bibliography.  
     """
-    formatted_list = [[process_node(node, item) for node in style.bibliography.layout] 
-                         for item in reference_list]
+    processed_bibliography = [[process_node(node, item) for node in style.bibliography.layout] 
+                              for item in reference_list]
 
-    if format == 'html':
-        pass
-    elif format == 'text':
-        for formatted_item in formatted_list:
-            result = ""
-            for formatted_node in formatted_item:
+    return(processed_bibliography)
+
+
+def format_bibliography(processed_bibliography, format='html'):
+    for formatted_item in processed_bibliography:
+        result = ""
+        for formatted_node in formatted_item:
+            if format == 'html':
+                result += formatted_node.to_html()
+            elif format == 'text':
                 result += formatted_node.to_text()
-            print(result)
-
+        print(result)
+    
 def citeproc(style, reference_list):
     """
     With a Style, a list of References and the list of citation 

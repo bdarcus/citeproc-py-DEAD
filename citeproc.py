@@ -148,7 +148,6 @@ def process_bibliography(style, reference_list):
 
     return(processed_bibliography)
 
-
 def format_bibliography(processed_bibliography, format='html'):
     for formatted_item in processed_bibliography:
         result = ""

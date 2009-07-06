@@ -10,6 +10,9 @@ CSLNS = '{http://purl.org/net/xbiblio/csl}'
 class Style(ElementTree):
     """
     An ElementTree wrapper to easily parse and work with a CSL instance.
+    >>> style = Style('some.csl')
+    >>> style.title
+    "Some Style"
     """
 
     def __init__(self, csl_fname):

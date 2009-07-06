@@ -67,15 +67,6 @@ class FormattingAttributes:
         self.block = block
 
 
-
-class FormattedCitationCluster(FormattedList):
-    pass
-
-
-
-class FormattedReferenceList(FormattedList):
-    pass
-
 # >>> processing functions <<<
 
 def sortkey(reference, style, context='bibliography'):

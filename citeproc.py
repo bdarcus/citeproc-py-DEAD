@@ -140,12 +140,13 @@ def process_node(style_node, reference):
 
 def process_macro(macro, reference):
     """
-    When givne a macro and a reference, return an evaluated macro.
+    When givne a macro and a reference, return an evaluated macro 
+    (a list of FormattedNode objects).
     """
-    for style_node in macro:
-        process_node(style_node, reference)
+    list = [process_node(style_node, reference) for style_node in macro]
+    return(list)
 
-def process_citation(style, reference_list, citation, format='html'):
+def process_citation(style, reference_list, citation):
     """
     With a Style, a list of References and the list of citation groups 
     (the list of citations with their locator), produce the for 
@@ -158,8 +159,8 @@ def process_citation(style, reference_list, citation, format='html'):
 
 def process_bibliography(style, reference_list):
     """
-    With a Style and the list of References produce the FormattedOutput 
-    for the bibliography.  
+    With a Style and the list of references produce a list of formatted  
+    bibliographc entries.  
     """
     processed_bibliography = [[process_node(style_node, reference) for style_node in style.bibliography.layout] 
                               for reference in reference_list]

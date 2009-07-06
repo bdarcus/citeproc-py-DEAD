@@ -138,6 +138,13 @@ def process_node(style_node, reference):
     elif style_node.tag == CSLNS + "text":
         return(process_text(style_node, reference))
 
+def process_macro(macro, reference):
+    """
+    When givne a macro and a reference, return an valuated macro.
+    """
+    for style_node in macro:
+        process_node(style_node, reference)
+
 def process_citation(style, reference_list, citation, format='html'):
     """
     With a Style, a list of References and the list of citation groups 

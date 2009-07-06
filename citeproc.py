@@ -104,14 +104,13 @@ def extract_formatting(style_node):
     """
     When given a style node, returns FormattingAttribute object.
     """
-    fstyle = node.get('font-style')
-    fweight = node.get('font-weight')
-    fvariant = node.get('font-variant')
-    prefix = node.get('prefix')
-    suffix = node.get('suffix')
+    fstyle = style_node.get('font-style')
+    fweight = style_node.get('font-weight')
+    fvariant = style_node.get('font-variant')
+    prefix = style_node.get('prefix')
+    suffix = style_node.get('suffix')
     return(FormattingAttributes(fstyle=fstyle, fweight=fweight, fvariant=fvariant, 
                                 prefix=prefix, suffix=suffix))
-
 def process_text(style_node, reference):
     """
     When given a style node and a reference, return an evaludated cs:text.
@@ -119,8 +118,12 @@ def process_text(style_node, reference):
     formatting = extract_formatting(style_node)
     variable = style_node.get('variable')
     content = reference[style_node.get('variable')] if variable in reference else None
-    formatted_node = FormattedNode(variable=variable, content=content, formatting=formatting)
-    return(formatted_node)
+
+    if content:
+        formatted_node = FormattedNode(variable=variable, content=content, formatting=formatting)
+        return(formatted_node)
+    else:
+        pass
 
 def process_node(style_node, reference):
     """

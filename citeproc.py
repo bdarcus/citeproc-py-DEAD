@@ -1,6 +1,6 @@
 # would prefer to use cElementTree here for speed and memory, but 
 # a) there seems to be a parsing bug, and b) CSL files are small
-from xml.etree.ElementTree import ElementTree
+from xml.etree.ElementTree import Element, ElementTree
 import json
 
 CSLNS = '{http://purl.org/net/xbiblio/csl}'
@@ -110,7 +110,6 @@ def extract_formatting(node):
 
 def process_text(node, item):
     formatting = extract_formatting(node)
-    print(formatting)
     variable = node.get('variable')
     content = item[node.get('variable')] if variable in item else None
     formatted_node = FormattedNode(variable=variable, content=content, formatting=formatting)

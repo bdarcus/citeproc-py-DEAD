@@ -54,16 +54,6 @@ class FormattedNode:
 
 
 
-class FormattedList:
-    """
-    The formatted output.
-    """
-    def __init__(self, items, delimiter=None, prefix=None, suffix=None, block=False):
-        self.items = items
-        self.prefix = prefix
-        self.suffix = suffix
-        self.block = block
-
 class FormattingAttributes:
     def __init__(self, fweight=None, fstyle=None, fvariant=None, 
                  prefix=None, suffix=None, delimiter=None, quote=False, block=False):
@@ -76,8 +66,12 @@ class FormattingAttributes:
         self.quote = quote
         self.block = block
 
+
+
 class FormattedCitationCluster(FormattedList):
     pass
+
+
 
 class FormattedReferenceList(FormattedList):
     pass

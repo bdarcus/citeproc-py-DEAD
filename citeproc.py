@@ -43,7 +43,7 @@ class FormattedNode:
         self.content = content
         self.formatting = formatting
 
-    def to_html(self, rdfa=False):
+    def to_text(self):
         result = ""
         if self.formatting.prefix:
             result += self.formatting.prefix
@@ -127,7 +127,7 @@ def process_node(node, item):
     elif node.tag == CSLNS + "text":
         return(process_text(node, item))
 
-def process_citation(style, reference_list, citation, mode='html'):
+def process_citation(style, reference_list, citation, format='html'):
     """
     With a Style, a list of References and the list of citation groups 
     (the list of citations with their locator), produce the for 
@@ -138,7 +138,7 @@ def process_citation(style, reference_list, citation, mode='html'):
 
     return(formatted_citation)
 
-def process_bibliography(style, reference_list):
+def process_bibliography(style, reference_list, format='html'):
     """
     With a Style and the list of References produce the FormattedOutput 
     for the bibliography.  
@@ -146,7 +146,14 @@ def process_bibliography(style, reference_list):
     formatted_list = [[process_node(node, item) for node in style.bibliography.layout] 
                          for item in reference_list]
 
-    return(formatted_list)
+    if format == 'html':
+        pass
+    elif format == 'text':
+        for formatted_item in formatted_list:
+            result = ""
+            for formatted_node in formatted_item:
+                result += formatted_node.to_text()
+            print(result)
 
 def citeproc(style, reference_list):
     """

@@ -140,7 +140,7 @@ def process_node(style_node, reference):
 
 def process_macro(macro, reference):
     """
-    When givne a macro and a reference, return an valuated macro.
+    When givne a macro and a reference, return an evaluated macro.
     """
     for style_node in macro:
         process_node(style_node, reference)

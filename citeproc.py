@@ -58,6 +58,9 @@ class FormattedNode:
 
 
 class FormattingAttributes:
+    """
+    Holds the formatting details associated with a style node.
+    """
     def __init__(self, fweight=None, fstyle=None, fvariant=None, 
                  prefix=None, suffix=None, delimiter=None, quote=False, block=False):
         self.fweight = fweight
@@ -72,22 +75,35 @@ class FormattingAttributes:
 
 # >>> processing functions <<<
 
-def sortkey(reference, style, context='bibliography'):
+def sortkey(style, reference, context='bibliography'):
     """
-    When given a Reference and a Style, returns a sorting key.
+    When give a Reference and a Style, returns a sorting key.
     """
     return(reference['title'], reference['date'])
 
-def process_group(node, item):
+def process_group(style_node, reference):
+    """
+    When given a style node and a reference, return an evaluated cs:group.
+    """
     pass
 
-def process_names(node, item):
+def process_names(style_node, reference):
+    """
+    When given a style node and a reference, returns an evaluated list of 
+    contributor names.
+    """
     pass
 
-def process_choose(node, item):
+def process_choose(style_node, reference):
+    """
+    When given a style node and a reference, return an evaluated cs:choose.
+    """
     pass
 
-def extract_formatting(node):
+def extract_formatting(style_node):
+    """
+    When given a style node, returns FormattingAttribute object.
+    """
     fstyle = node.get('font-style')
     fweight = node.get('font-weight')
     fvariant = node.get('font-variant')
@@ -96,24 +112,28 @@ def extract_formatting(node):
     return(FormattingAttributes(fstyle=fstyle, fweight=fweight, fvariant=fvariant, 
                                 prefix=prefix, suffix=suffix))
 
-def process_text(node, item):
-    formatting = extract_formatting(node)
-    variable = node.get('variable')
-    content = item[node.get('variable')] if variable in item else None
+def process_text(style_node, reference):
+    """
+    When given a style node and a reference, return an evaludated cs:text.
+    """
+    formatting = extract_formatting(style_node)
+    variable = style_node.get('variable')
+    content = reference[style_node.get('variable')] if variable in reference else None
     formatted_node = FormattedNode(variable=variable, content=content, formatting=formatting)
     return(formatted_node)
 
-def process_node(node, item):
+def process_node(style_node, reference):
     """
+    Passes of style node processing to appropriate function.
     """
-    if node.tag == CSLNS + "group":
-        return(process_group(node, item))
-    elif node.tag == CSLNS + "names":
-        return(process_names(node, item))
-    elif node.tag == CSLNS + "choose":
-        return(process_choose(node, item))
-    elif node.tag == CSLNS + "text":
-        return(process_text(node, item))
+    if style_node.tag == CSLNS + "group":
+        return(process_group(style_node, reference))
+    elif style_node.tag == CSLNS + "names":
+        return(process_names(style_node, reference))
+    elif style_node.tag == CSLNS + "choose":
+        return(process_choose(style_node, reference))
+    elif style_node.tag == CSLNS + "text":
+        return(process_text(style_node, reference))
 
 def process_citation(style, reference_list, citation, format='html'):
     """
@@ -121,7 +141,7 @@ def process_citation(style, reference_list, citation, format='html'):
     (the list of citations with their locator), produce the for 
     FormattedOutput each citation group.
     """
-    formatted_citation = [[process_node(node, citeref) for node in style.citation.layout] 
+    formatted_citation = [[process_node(style_node, citeref) for style_node in style.citation.layout] 
                              for citeref in citation]
 
     return(formatted_citation)
@@ -131,15 +151,18 @@ def process_bibliography(style, reference_list):
     With a Style and the list of References produce the FormattedOutput 
     for the bibliography.  
     """
-    processed_bibliography = [[process_node(node, item) for node in style.bibliography.layout] 
-                              for item in reference_list]
+    processed_bibliography = [[process_node(style_node, reference) for style_node in style.bibliography.layout] 
+                              for reference in reference_list]
 
     return(processed_bibliography)
 
 def format_bibliography(processed_bibliography, format='html'):
-    for formatted_item in processed_bibliography:
+    """
+    Generates final output.
+    """
+    for formatted_reference in processed_bibliography:
         result = ""
-        for formatted_node in formatted_item:
+        for formatted_node in formatted_reference:
             if format == 'html':
                 result += formatted_node.to_html()
             elif format == 'text':

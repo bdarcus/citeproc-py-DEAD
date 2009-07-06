@@ -48,29 +48,12 @@ class FormattedNode:
 
     def to_text(self):
         result = ""
-        if self.formatting.prefix:
-            result += self.formatting.prefix
+        if 'prefix' in self.formatting:
+            result += self.formatting['prefix']
         result += self.content
-        if self.formatting.suffix:
-            result += self.formatting.suffix
+        if 'suffix' in self.formatting:
+            result += self.formatting['suffix']
         return(result)
-
-
-
-class FormattingAttributes:
-    """
-    Holds the formatting details associated with a style node.
-    """
-    def __init__(self, fweight=None, fstyle=None, fvariant=None, 
-                 prefix=None, suffix=None, delimiter=None, quote=False, block=False):
-        self.fweight = fweight
-        self.fstyle = fstyle
-        self.fvariant = fvariant
-        self.prefix = prefix
-        self.suffix = suffix
-        self.delimiter = delimiter
-        self.quote = quote
-        self.block = block
 
 
 # >>> processing functions <<<
@@ -100,22 +83,11 @@ def process_choose(style_node, reference):
     """
     pass
 
-def extract_formatting(style_node):
-    """
-    When given a style node, returns FormattingAttribute object.
-    """
-    fstyle = style_node.get('font-style')
-    fweight = style_node.get('font-weight')
-    fvariant = style_node.get('font-variant')
-    prefix = style_node.get('prefix')
-    suffix = style_node.get('suffix')
-    return(FormattingAttributes(fstyle=fstyle, fweight=fweight, fvariant=fvariant, 
-                                prefix=prefix, suffix=suffix))
 def process_text(style_node, reference):
     """
     When given a style node and a reference, return an evaludated cs:text.
     """
-    formatting = extract_formatting(style_node)
+    formatting = style_node.attrib
     variable = style_node.get('variable')
     content = reference[style_node.get('variable')] if variable in reference else None
 

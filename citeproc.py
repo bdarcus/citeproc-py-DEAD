@@ -59,12 +59,11 @@ class FormattedNode:
 
 
 
-class FormattedNodeList:
+class FormattedNodeList(list):
     """
     A nested formatted node, whose content is a list.
     """
-    def __init__(self, content=[], formatting=None):
-        self.content = content
+    def __init__(self, formatting=None):
         self.formatting = formatting
 
 

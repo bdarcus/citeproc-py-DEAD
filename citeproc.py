@@ -101,7 +101,7 @@ def condition(condition_attributes, reference):
     elif match == 'all':
         return(False not in conditions)
     else:
-        return(True)
+        return(True in conditions)
 
 def process_choose(style_node, reference):
     """

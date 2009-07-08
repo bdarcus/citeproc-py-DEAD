@@ -81,23 +81,24 @@ def condition(condition_attributes, reference):
     """
     Evaluates a condition.
     """
-    if condition_attributes['variable']:
+    conditions = []
+
+    if 'variable' in condition_attributes:
         variables = condition_attributes['variable'].split(" ")
-    if condition_attributes['type']:
+        for variable in variables:
+            conditions.append(variable in reference)
+
+    if 'type' in condition_attributes:
         reftypes = condition_attributes['type'].split(" ")
-    if condition_attributes['match']:
+        for reftype in reftypes:
+            conditions.append(reftype == reference['type'])
+
+    if 'match' in condition_attributes:
         match = condition_attributes['match']
-
-    for variable in variables:
-        conditions.append(variable in reference)
-
-    for reftype in reftypes:
-        conditions.append(reftype == reference['type'])
-
-    if match == 'none':
-        return(True not in conditions)
-    elif match == 'all':
-        return(False not in conditions)
+        if match == 'none':
+            return(True not in conditions)
+        elif match == 'all':
+            return(False not in conditions)
     else:
         return(True in conditions)
 

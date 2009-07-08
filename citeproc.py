@@ -65,7 +65,10 @@ def get_macro(name, macros):
     Return first item in sequence where f(item) == True.
     """
     for themacro in (macro for macro in macros if macro.get('name') == name):
-        return(themacro)
+        if themacro:
+            return(themacro)
+        else:
+            pass
 
 def sortkey(style, reference, context='bibliography'):
     """

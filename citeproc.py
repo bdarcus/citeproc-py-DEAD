@@ -32,8 +32,6 @@ class Style(ElementTree):
             self.bibliography.options = self.bibliography.find('{http://purl.org/net/xbiblio/csl}option')
             self.bibliography.layout = self.bibliography.find('{http://purl.org/net/xbiblio/csl}layout')
 
-    def get_macro(name):
-        pass
 
 
 
@@ -58,6 +56,9 @@ class FormattedNode:
 
 
 # >>> processing functions <<<
+
+def get_macro(name, macros):
+    return(macros[0])
 
 def sortkey(style, reference, context='bibliography'):
     """
@@ -109,21 +110,25 @@ def process_choose(style_node, reference):
     """
     pass
 
-def process_text(style_node, reference):
+def process_text(style_node, style_macros, reference):
     """
     When given a style node and a reference, return an evaludated cs:text.
     """
     formatting = style_node.attrib
     variable = style_node.get('variable')
-    content = reference[style_node.get('variable')] if variable in reference else None
-
-    if content:
-        formatted_node = FormattedNode(variable=variable, content=content, formatting=formatting)
-        return(formatted_node)
+    macro = style_node.get('macro')
+    
+    if variable:
+        content = reference[style_node.get('variable')] if variable in reference else None
+        if content:
+            return(FormattedNode(variable=variable, content=content, formatting=formatting))
+    elif macro:
+        macro_result = process_macro(get_macro(macro, style_macros), style_macros, reference)
+        return(macro_result)
     else:
         pass
 
-def process_node(style_node, reference):
+def process_node(style_node, style_macros, reference):
     """
     Passes of style node processing to appropriate function.
     """
@@ -134,14 +139,14 @@ def process_node(style_node, reference):
     elif style_node.tag == CSLNS + "choose":
         return(process_choose(style_node, reference))
     elif style_node.tag == CSLNS + "text":
-        return(process_text(style_node, reference))
+        return(process_text(style_node, style_macros, reference))
 
-def process_macro(macro, reference):
+def process_macro(macro, style_macros, reference):
     """
     When given a macro and a reference, return an evaluated macro 
     (a list of FormattedNode objects).
     """
-    list = [process_node(style_node, reference) for style_node in macro]
+    list = [process_node(style_node, style_macros, reference) for style_node in macro]
     return(list)
 
 def process_citation(style, reference_list, citation):
@@ -160,7 +165,7 @@ def process_bibliography(style, reference_list):
     With a Style and the list of references produce a list of formatted  
     bibliographc entries.  
     """
-    processed_bibliography = [[process_node(style_node, reference) for style_node in style.bibliography.layout] 
+    processed_bibliography = [[process_node(style_node, style.macros, reference) for style_node in style.bibliography.layout] 
                               for reference in reference_list]
 
     return(processed_bibliography)

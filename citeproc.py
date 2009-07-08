@@ -89,7 +89,6 @@ def condition(condition_attributes, reference):
         match = condition_attributes['match']
 
     conditions = []
-    condition = False
 
     for variable in variables:
         conditions.append(variable in reference)
@@ -97,7 +96,12 @@ def condition(condition_attributes, reference):
     for reftype in reftypes:
         conditions.append(reftype == reference['type'])
 
-    return(condition)
+    if match == 'none':
+        return(True not in conditions)
+    elif match == 'all':
+        return(False not in conditions)
+    else:
+        return(True)
 
 def process_choose(style_node, reference):
     """

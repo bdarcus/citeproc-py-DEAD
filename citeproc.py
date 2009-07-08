@@ -58,6 +58,17 @@ class FormattedNode:
 
 
 
+
+class FormattedNodeList:
+    """
+    A nested formatted node, whose content is a list.
+    """
+    def __init__(self, content=[], formatting=None):
+        self.content = content
+        self.formatting = formatting
+
+
+
 # >>> processing functions <<<
 
 def get_macro(name, macros):

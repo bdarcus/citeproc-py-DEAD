@@ -61,7 +61,11 @@ class FormattedNode:
 # >>> processing functions <<<
 
 def get_macro(name, macros):
-    return(macros[0])
+    """
+    Return first item in sequence where f(item) == True.
+    """
+    for themacro in (macro for macro in macros if macro.get('name') == name):
+        return(themacro)
 
 def sortkey(style, reference, context='bibliography'):
     """

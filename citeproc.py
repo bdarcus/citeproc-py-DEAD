@@ -88,8 +88,6 @@ def condition(condition_attributes, reference):
     if condition_attributes['match']:
         match = condition_attributes['match']
 
-    conditions = []
-
     for variable in variables:
         conditions.append(variable in reference)
 

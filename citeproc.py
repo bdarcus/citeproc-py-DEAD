@@ -168,10 +168,11 @@ def process_bibliography(style, reference_list):
     With a Style and the list of references produce a list of formatted  
     bibliographc entries.  
     """
-    processed_bibliography = [[process_node(style_node, style.macros, reference) for style_node in style.bibliography.layout] 
+    processed_bibliography = [flatten([process_node(style_node, style.macros, reference) 
+                               for style_node in style.bibliography.layout]) 
                               for reference in reference_list]
 
-    return(flatten(processed_bibliography))
+    return(processed_bibliography)
 
 def flatten(l, ltypes=(list, tuple)):
     """

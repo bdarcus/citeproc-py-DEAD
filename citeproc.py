@@ -77,6 +77,28 @@ def process_names(style_node, reference):
     """
     pass
 
+def condition(condition_attributes, reference):
+    """
+    Evaluates a condition.
+    """
+    if condition_attributes['variable']:
+        variables = condition_attributes['variable'].split(" ")
+    if condition_attributes['type']:
+        reftypes = condition_attributes['type'].split(" ")
+    if condition_attributes['match']:
+        match = condition_attributes['match']
+
+    conditions = []
+    condition = False
+
+    for variable in variables:
+        conditions.append(variable in reference)
+
+    for reftype in reftypes:
+        conditions.append(reftype == reference['type'])
+
+    return(condition)
+
 def process_choose(style_node, reference):
     """
     When given a style node and a reference, return an evaluated cs:choose.

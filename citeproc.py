@@ -73,7 +73,7 @@ class FormattedNodeList:
 
 def get_macro(name, macros):
     """
-    Return first item in sequence where f(item) == True.
+    Return macro from macro list by name.
     """
     for themacro in (macro for macro in macros if macro.get('name') == name):
         if themacro:

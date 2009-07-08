@@ -39,7 +39,7 @@ class Style(ElementTree):
 
 class FormattedNode:
     """
-    The formatted output.
+    The formatted node, whose content is a string.
     """
     def __init__(self, variable, content, formatting=None):
         self.variable = variable
@@ -54,6 +54,17 @@ class FormattedNode:
         if 'suffix' in self.formatting:
             result += self.formatting['suffix']
         return(result)
+
+
+
+class FormattedNodeList:
+    """
+    A nested formatted node, whose content is a list.
+    """
+    def __init__(self, content=[], formatting=None):
+        self.content = content
+        self.formatting = formatting
+
 
 
 # >>> processing functions <<<
@@ -137,11 +148,11 @@ def process_node(style_node, reference):
 
 def process_macro(macro, reference):
     """
-    When givne a macro and a reference, return an evaluated macro 
+    When given a macro and a reference, return an evaluated macro 
     (a list of FormattedNode objects).
     """
     list = [process_node(style_node, reference) for style_node in macro]
-    return(list)
+    return(FormattedNodeList(content=list))
 
 def process_citation(style, reference_list, citation):
     """

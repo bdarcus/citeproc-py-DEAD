@@ -53,6 +53,9 @@ class FormattedNode:
             result += self.formatting['suffix']
         return(result)
 
+    def __iter__(self):
+        yield(self)
+
 
 
 # >>> processing functions <<<
@@ -168,25 +171,28 @@ def process_bibliography(style, reference_list):
     processed_bibliography = [[process_node(style_node, style.macros, reference) for style_node in style.bibliography.layout] 
                               for reference in reference_list]
 
-    return(processed_bibliography)
+    return(flatten(processed_bibliography))
 
-def flatten(iterable):
-  it = iter(iterable)
-  for e in it:
-    if isinstance(e, (list, tuple)):
-      for f in flatten(e):
-        yield f
-    else:
-      yield e
+def flatten(l, ltypes=(list, tuple)):
+    ltype = type(l)
+    l = list(l)
+    i = 0
+    while i < len(l):
+        while isinstance(l[i], ltypes):
+            if not l[i]:
+                l.pop(i)
+                i -= 1
+                break
+            else:
+                l[i:i + 1] = l[i]
+        i += 1
+    return(ltype(l))
 
 def format_bibliography(processed_bibliography, format='html'):
     """
     Generates final output.
     """
-    print(processed_bibliography)
-    flat_bibliography = flatten(processed_bibliography)
-    print(flat_bibliography)
-    for formatted_reference in flat_bibliography:
+    for formatted_reference in processed_bibliography:
         result = ""
         for formatted_node in formatted_reference:
             if format == 'html':

@@ -165,11 +165,23 @@ def process_bibliography(style, reference_list):
 
     return(processed_bibliography)
 
+def flatten(iterable):
+  it = iter(iterable)
+  for e in it:
+    if isinstance(e, (list, tuple)):
+      for f in flatten(e):
+        yield f
+    else:
+      yield e
+
 def format_bibliography(processed_bibliography, format='html'):
     """
     Generates final output.
     """
-    for formatted_reference in processed_bibliography:
+    print(processed_bibliography)
+    flat_bibliography = flatten(processed_bibliography)
+    print(flat_bibliography)
+    for formatted_reference in flat_bibliography:
         result = ""
         for formatted_node in formatted_reference:
             if format == 'html':

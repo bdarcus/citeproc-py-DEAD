@@ -174,6 +174,9 @@ def process_bibliography(style, reference_list):
     return(flatten(processed_bibliography))
 
 def flatten(l, ltypes=(list, tuple)):
+    """
+    Flattens a nested list.
+    """
     ltype = type(l)
     l = list(l)
     i = 0

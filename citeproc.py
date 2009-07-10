@@ -163,11 +163,11 @@ def process_bibliography(style, reference_list):
 
     return(processed_bibliography)
 
-def format_bibliography(processed_bibliography, format='html'):
+def format_bibliography(processed_bibliography, oformat='html'):
     """
     Generates final output.
     """
-    if format == 'html':
+    if oformat == 'html':
         print(tostring(processed_bibliography))
     
 def citeproc(style, reference_list):

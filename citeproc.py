@@ -1,6 +1,11 @@
 """
 For processing citations and bibliographies using the Citation Style 
 Language (CSL).
+
+>>> STYLE = Style('apa.csl')
+>>> REFS = json.loads(open('refs.json').read())
+>>> PROCESSED = process_bibliography(STYLE, REFS)
+>>> formatting_bibliography(PROCESSED)
 """
 from xml.etree.ElementTree import Element, SubElement, ElementTree, tostring
 import json

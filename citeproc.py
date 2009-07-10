@@ -109,7 +109,9 @@ def process_text(parent, style_node, style_macros, reference):
     if variable:
         content = reference[style_node.get('variable')] if variable in reference else None
         if content:
-            node = SubElement(parent, "span", attrib={"property": variable})
+            node = SubElement(parent, "span", attrib=formatting)
+            # need to strip out unneeded attributes
+            node.set('property', variable)
             node.text = content
             return(node)
     elif macro:

@@ -134,8 +134,8 @@ def process_macro(parent, macro, style_macros, reference):
     When given a macro and a reference, return an evaluated macro 
     (a list of FormattedNode objects).
     """
-    list = [process_node(parent, style_node, style_macros, reference) for style_node in macro]
-    return(list)
+    mlist = [process_node(parent, style_node, style_macros, reference) for style_node in macro]
+    return(mlist)
 
 def process_citation(style, reference_list, citation):
     """

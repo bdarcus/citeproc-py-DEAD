@@ -27,12 +27,12 @@ class Style(ElementTree):
         self.bibliography = _style.find(CSLNS + 'bibliography')
         
         if self.citation:
-            self.citation.layout = self.citation.find('{http://purl.org/net/xbiblio/csl}layout')
-            self.citation.options = self.citation.findall('{http://purl.org/net/xbiblio/csl}option')
+            self.citation.layout = self.citation.find(CSLNS + 'layout')
+            self.citation.options = self.citation.findall(CSLNS + 'option')
 
         if self.bibliography:
-            self.bibliography.options = self.bibliography.find('{http://purl.org/net/xbiblio/csl}option')
-            self.bibliography.layout = self.bibliography.find('{http://purl.org/net/xbiblio/csl}layout')
+            self.bibliography.options = self.bibliography.find(CSLNS + 'option')
+            self.bibliography.layout = self.bibliography.find(CSLNS + 'layout')
 
 
 

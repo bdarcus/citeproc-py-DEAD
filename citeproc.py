@@ -1,5 +1,7 @@
-# would prefer to use cElementTree here for speed and memory, but 
-# a) there seems to be a parsing bug, and b) CSL files are small
+"""
+For processing citations and bibliographies using the Citation Style 
+Language (CSL).
+"""
 from xml.etree.ElementTree import Element, SubElement, ElementTree, tostring
 import json
 

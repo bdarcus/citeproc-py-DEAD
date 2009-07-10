@@ -1,6 +1,6 @@
 # would prefer to use cElementTree here for speed and memory, but 
 # a) there seems to be a parsing bug, and b) CSL files are small
-from xml.etree.ElementTree import Element, ElementTree
+from xml.etree.ElementTree import Element, SubElement, ElementTree, tostring
 import json
 
 CSLNS = '{http://purl.org/net/xbiblio/csl}'
@@ -31,40 +31,6 @@ class Style(ElementTree):
         if self.bibliography:
             self.bibliography.options = self.bibliography.find('{http://purl.org/net/xbiblio/csl}option')
             self.bibliography.layout = self.bibliography.find('{http://purl.org/net/xbiblio/csl}layout')
-
-
-
-
-class FormattedNode:
-    """
-    The formatted node, whose content is a string.
-    """
-    def __init__(self, variable, content, formatting=None):
-        self.variable = variable
-        self.content = content
-        self.formatting = formatting
-
-    def to_text(self):
-        result = ""
-        if 'prefix' in self.formatting:
-            result += self.formatting['prefix']
-        result += self.content
-        if 'suffix' in self.formatting:
-            result += self.formatting['suffix']
-        return(result)
-
-    def __iter__(self):
-        yield(self)
-
-
-
-
-class FormattedNodeList(list):
-    """
-    A nested formatted node, whose content is a list.
-    """
-    def __init__(self, formatting=None):
-        self.formatting = formatting
 
 
 
@@ -130,7 +96,7 @@ def process_choose(style_node, reference):
     """
     pass
 
-def process_text(style_node, style_macros, reference):
+def process_text(parent, style_node, style_macros, reference):
     """
     When given a style node and a reference, return an evaludated cs:text.
     """
@@ -141,14 +107,16 @@ def process_text(style_node, style_macros, reference):
     if variable:
         content = reference[style_node.get('variable')] if variable in reference else None
         if content:
-            return(FormattedNode(variable=variable, content=content, formatting=formatting))
+            node = SubElement(parent, "span", attrib={"property": variable})
+            node.text = content
+            return(node)
     elif macro:
-        macro_result = process_macro(get_macro(macro, style_macros), style_macros, reference)
+        macro_result = process_macro(parent, get_macro(macro, style_macros), style_macros, reference)
         return(macro_result)
     else:
         pass
 
-def process_node(style_node, style_macros, reference):
+def process_node(parent, style_node, style_macros, reference):
     """
     Passes of style node processing to appropriate function.
     """
@@ -159,14 +127,14 @@ def process_node(style_node, style_macros, reference):
     elif style_node.tag == CSLNS + "choose":
         return(process_choose(style_node, reference))
     elif style_node.tag == CSLNS + "text":
-        return(process_text(style_node, style_macros, reference))
+        return(process_text(parent, style_node, style_macros, reference))
 
-def process_macro(macro, style_macros, reference):
+def process_macro(parent, macro, style_macros, reference):
     """
     When given a macro and a reference, return an evaluated macro 
     (a list of FormattedNode objects).
     """
-    list = [process_node(style_node, style_macros, reference) for style_node in macro]
+    list = [process_node(parent, style_node, style_macros, reference) for style_node in macro]
     return(list)
 
 def process_citation(style, reference_list, citation):
@@ -175,52 +143,27 @@ def process_citation(style, reference_list, citation):
     (the list of citations with their locator), produce the for 
     FormattedOutput each citation group.
     """
-    formatted_citation = [[process_node(style_node, citeref) for style_node in style.citation.layout] 
-                             for citeref in citation]
-
-    return(formatted_citation)
+    pass
 
 def process_bibliography(style, reference_list):
     """
     With a Style and the list of references produce a list of formatted  
     bibliographc entries.  
     """
-    processed_bibliography = [flatten([process_node(style_node, style.macros, reference) 
-                               for style_node in style.bibliography.layout]) 
-                              for reference in reference_list]
+    processed_bibliography = Element("ol", attrib={"class":"bibliography"})
+
+    for reference in reference_list:
+        for style_node in style.bibliography.layout:
+            process_node(processed_bibliography, style_node, style.macros, reference) 
 
     return(processed_bibliography)
-
-def flatten(l, ltypes=(list, tuple)):
-    """
-    Flattens a nested list.
-    """
-    ltype = type(l)
-    l = list(l)
-    i = 0
-    while i < len(l):
-        while isinstance(l[i], ltypes):
-            if not l[i]:
-                l.pop(i)
-                i -= 1
-                break
-            else:
-                l[i:i + 1] = l[i]
-        i += 1
-    return(ltype(l))
 
 def format_bibliography(processed_bibliography, format='html'):
     """
     Generates final output.
     """
-    for formatted_reference in processed_bibliography:
-        result = ""
-        for formatted_node in formatted_reference:
-            if format == 'html':
-                result += formatted_node.to_html()
-            elif format == 'text':
-                result += formatted_node.to_text()
-        print(result)
+    if format == 'html':
+        print(tostring(processed_bibliography))
     
 def citeproc(style, reference_list):
     """

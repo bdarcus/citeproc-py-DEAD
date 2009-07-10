@@ -153,8 +153,9 @@ def process_bibliography(style, reference_list):
     processed_bibliography = Element("ol", attrib={"class":"bibliography"})
 
     for reference in reference_list:
+        ref = SubElement(processed_bibliography, "li", attrib={"property":"dcterms:references"})
         for style_node in style.bibliography.layout:
-            process_node(processed_bibliography, style_node, style.macros, reference) 
+            process_node(ref, style_node, style.macros, reference) 
 
     return(processed_bibliography)
 

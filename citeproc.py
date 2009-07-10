@@ -53,6 +53,14 @@ def get_macro(name, macros):
         else:
             pass
 
+def get_property(lname):
+    pmap = { 
+        "title": "dcterms:title", 
+        "issued": "dcterms:issued",
+        "volume": "bibo:volume"
+        }
+    return(pmap[lname])
+
 def sortkey(style, reference, context='bibliography'):
     """
     When give a Reference and a Style, returns a sorting key.
@@ -115,7 +123,7 @@ def process_text(parent, style_node, style_macros, reference):
         content = reference[style_node.get('variable')] if variable in reference else None
         if content:
             node = SubElement(parent, "span", attrib=formatting)
-            node.set('property', node.attrib.pop('variable'))
+            node.set('property', get_property(node.attrib.pop('variable')))
             node.text = content
             return(node)
     elif macro:

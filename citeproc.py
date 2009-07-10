@@ -107,7 +107,7 @@ def process_text(parent, style_node, style_macros, reference):
     macro = style_node.get('macro')
     
     if variable:
-        content = reference[style_node.attrib.pop('variable')] if variable in reference else None
+        content = reference[style_node.get('variable')] if variable in reference else None
         if content:
             node = SubElement(parent, "span", attrib=formatting)
             node.set('property', variable)

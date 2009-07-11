@@ -57,7 +57,11 @@ def get_property(lname):
     pmap = { 
         "title": "dcterms:title", 
         "issued": "dcterms:issued",
-        "volume": "bibo:volume"
+        "volume": "bibo:volume",
+        "doi": "bibo:doi",
+        "uri": "bibo:uri",
+        # return a dict for relations; need to adjust other code
+        "container-title": {"dcterms:isPartOf": "dcterms:title"}
         }
     return(pmap[lname])
 

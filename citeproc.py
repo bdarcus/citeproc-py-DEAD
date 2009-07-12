@@ -179,12 +179,18 @@ def process_bibliography(style, reference_list):
 
     return(processed_bibliography)
 
-def format_bibliography(processed_bibliography, oformat='html'):
+def format_bibliography(processed_bibliography, oformat='html+rdfa'):
     """
     Generates final output.
     """
-    if oformat == 'html':
+    if oformat == 'html+rdfa':
         print(tostring(processed_bibliography))
+    elif oformat == 'text':
+        result = ""
+        for node in processed_bibliography.getiterator():
+            if node.text:
+                result += node.text
+        print(result)
     
 def citeproc(style, reference_list):
     """

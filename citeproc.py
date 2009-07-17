@@ -113,7 +113,18 @@ def process_choose(style_node, reference):
     """
     When given a style node and a reference, return an evaluated cs:choose.
     """
-    pass
+    if condition(style_node.find(CSLNS + "if").attrib):
+        pass
+    
+    for elseif in style_node.findall(CSLNS + "else-if"):
+        elseif = style_node.find(CSLNS + "else-if")
+        elif condition(elseif.attrib):
+            pass
+
+    if style_node.find(CSLNS + "else"):
+        _else = style_node.find(CSLNS + "else")
+        if condition(_else.attrib):
+            pass
 
 def process_text(parent, style_node, style_macros, reference):
     """

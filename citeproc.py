@@ -175,10 +175,17 @@ def process_macro(parent, macro, style_macros, reference):
 def process_citation(style, reference_list, citation):
     """
     With a Style, a list of References and the list of citation groups 
-    (the list of citations with their locator), produce the for 
-    FormattedOutput each citation group.
+    (the list of citations with their locator), produce the
+    formatted output for each citation group.
     """
-    pass
+    processed_citation = Element("span", attrib={"class":"citation"})
+
+    for reference in reference_list:
+        citeref = SubElement(processed_citation, "span")
+        for style_node in style.citation.layout:
+            process_node(citeref, style_node, style.macros, reference) 
+
+    return(processed_citation)
 
 def process_bibliography(style, reference_list):
     """

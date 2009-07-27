@@ -54,6 +54,9 @@ def get_macro(name, macros):
             pass
 
 def get_property(lname):
+    """
+    When given a CSL variable name, returns the corresponding RDF property.
+    """
     pmap = { 
         "title": "dcterms:title", 
         "issued": "dcterms:issued",

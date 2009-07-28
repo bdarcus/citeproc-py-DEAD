@@ -61,6 +61,7 @@ def get_property(lname):
         "title": "dcterms:title", 
         "issued": "dcterms:issued",
         "volume": "bibo:volume",
+        "issue": "bibo:issue",
         "doi": "bibo:doi",
         "uri": "bibo:uri",
         # return a dict for relations; need to adjust other code
@@ -112,7 +113,12 @@ def condition(condition_attributes, reference):
     else:
         return(True in conditions)
 
-def process_choose(style_node, reference):
+def process_children(parent, style_node, style_macros, reference):
+    children = style_node.getchildren()
+    for child in children:
+        return(process_node(parent, child, style_macros, reference))
+
+def process_choose(parent, style_node, style_macros, reference):
     """
     When given a style node and a reference, return an evaluated cs:choose.
     """
@@ -120,15 +126,15 @@ def process_choose(style_node, reference):
     _elif = style_node.findall(CSLNS + "else-if")
     _else = style_node.find(CSLNS + "else")
 
-    if condition(_if.attrib):
-        pass
+    if condition(_if.attrib, reference):
+        return(process_children(parent, _if, style_macros, reference))
     
     for elseif in _elif:
-#        elif condition(elseif.attrib):
-            pass
+        if condition(elseif.attrib, reference):
+            process_children(parent, elseif, style_macros, reference)
 
-    if _else and condition(_else.attrib):
-        pass
+    if _else and condition(_else.attrib, reference):
+        process_children(parent, _else, style_macros, reference)
 
 def process_text(parent, style_node, style_macros, reference):
     """
@@ -160,7 +166,7 @@ def process_node(parent, style_node, style_macros, reference):
     elif style_node.tag == CSLNS + "names":
         return(process_names(style_node, reference))
     elif style_node.tag == CSLNS + "choose":
-        return(process_choose(style_node, reference))
+        return(process_choose(parent, style_node, style_macros, reference))
     elif style_node.tag == CSLNS + "text":
         return(process_text(parent, style_node, style_macros, reference))
 

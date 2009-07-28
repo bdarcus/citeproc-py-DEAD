@@ -133,8 +133,8 @@ def process_choose(parent, style_node, style_macros, reference):
         if condition(elseif.attrib, reference):
             process_children(parent, elseif, style_macros, reference)
 
-    if _else and condition(_else.attrib, reference):
-        process_children(parent, _else, style_macros, reference)
+    # needs fixing
+    process_children(parent, _else, style_macros, reference)
 
 def process_text(parent, style_node, style_macros, reference):
     """

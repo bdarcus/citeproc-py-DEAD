@@ -123,18 +123,19 @@ def process_choose(parent, style_node, style_macros, reference):
     """
     When given a style node and a reference, return an evaluated cs:choose.
     """
-    _if = style_node.find(CSLNS + "if")
-    _elif = style_node.findall(CSLNS + "else-if")
-    _else = style_node.find(CSLNS + "else")
+    children = style_node.getchildren()
 
-    if condition(_if.attrib, reference):
-        process_children(parent, _if, style_macros, reference)
-   
-    for elseif in _elif:
-        if condition(elseif.attrib, reference):
-            process_children(parent, elseif, style_macros, reference)
-        
-    process_children(parent, _else, style_macros, reference)
+    for child in children:
+        # first we check if there are attributes; if there are, it means
+        # the node is either a cs:if or a cs:else-if element
+        if child.attrib:
+            if condition(child.attrib, reference):
+                process_children(parent, child, style_macros, reference)
+                break
+            else:
+                pass
+        else:
+            process_children(parent, child, style_macros, reference)
 
 def process_text(parent, style_node, style_macros, reference):
     """

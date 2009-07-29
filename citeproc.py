@@ -130,10 +130,7 @@ def process_choose(parent, style_node, style_macros, reference):
         # the node is either a cs:if or a cs:else-if element
         if child.attrib:
             if condition(child.attrib, reference):
-                process_children(parent, child, style_macros, reference)
-                break
-            else:
-                pass
+                return(process_children(parent, child, style_macros, reference))
         else:
             process_children(parent, child, style_macros, reference)
 

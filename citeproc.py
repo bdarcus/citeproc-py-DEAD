@@ -64,6 +64,7 @@ def get_property(lname):
         "issue": "bibo:issue",
         "doi": "bibo:doi",
         "uri": "bibo:uri",
+        "isbn": "bibo:isbn",
         # return a dict for relations; need to adjust other code
         "container-title": {"dcterms:isPartOf": "dcterms:title"}
         }
@@ -127,13 +128,12 @@ def process_choose(parent, style_node, style_macros, reference):
     _else = style_node.find(CSLNS + "else")
 
     if condition(_if.attrib, reference):
-        return(process_children(parent, _if, style_macros, reference))
-    
+        process_children(parent, _if, style_macros, reference)
+   
     for elseif in _elif:
         if condition(elseif.attrib, reference):
             process_children(parent, elseif, style_macros, reference)
-
-    # needs fixing
+        
     process_children(parent, _else, style_macros, reference)
 
 def process_text(parent, style_node, style_macros, reference):

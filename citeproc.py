@@ -85,17 +85,23 @@ def process_group(style_node, reference):
 def format_name(name_node, contributor):
     pass
 
-def process_names(style_node, reference):
+def substitute(substitute_node, reference):
+    pass
+
+def process_names(names_node, reference):
     """
     When given a style node and a reference, returns an evaluated list of 
     contributor names.
     """
-    roles = style_node.get('variable').split(' ')
+    roles = names_node.get('variable').split(' ')
+    substitute_node = names_node.find(CSLNS + substitute)
 
     for role in roles:
         if role in reference:
             for contributor in reference[role]:
-                format_name(style_node.find(CSLNS + name), contributor)
+                format_name(names_node.find(CSLNS + name), contributor)
+        else:
+            substitute(substitute_node, reference)
 
 def condition(condition_attributes, reference):
     """

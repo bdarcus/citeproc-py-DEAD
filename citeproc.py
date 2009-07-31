@@ -89,7 +89,13 @@ def process_group(style_node, reference):
 def format_name(parent, name_node, contributor, role):
     contributor_node = SubElement(parent, "span")
     contributor_node.set('property', get_property(role))
-    contributor_node.text = contributor['family']
+
+    name = ""
+    name += contributor['family']
+    name += ", "
+    name += contributor['given']
+    
+    contributor_node.text = name
     return(contributor_node)
 
 def substitute(substitute_node, reference):
@@ -220,7 +226,7 @@ def process_bibliography(style, reference_list):
     processed_bibliography = Element("ol", attrib={"class":"bibliography"})
 
     for reference in reference_list:
-        ref = SubElement(processed_bibliography, "li", attrib={"property":"dcterms:references"})
+        ref = SubElement(processed_bibliography, "li", attrib={"property":"dc:references"})
         for style_node in style.bibliography.layout:
             process_node(ref, style_node, style.macros, reference) 
 

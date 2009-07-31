@@ -58,15 +58,19 @@ def get_property(lname):
     When given a CSL variable name, returns the corresponding RDF property.
     """
     pmap = { 
-        "title": "dcterms:title", 
-        "issued": "dcterms:issued",
+        "author": "dc:creator",
+        "editor": "bibo:editor",
+        "translator": "bibo:translator",
+        "title": "dc:title", 
+        "issued": "dc:issued",
         "volume": "bibo:volume",
         "issue": "bibo:issue",
         "doi": "bibo:doi",
         "uri": "bibo:uri",
         "isbn": "bibo:isbn",
         # return a dict for relations; need to adjust other code
-        "container-title": {"dcterms:isPartOf": "dcterms:title"}
+        "container-title": {"dc:isPartOf": "dc:title"},
+        "publisher": {"dc:publisher": "foaf:name"}
         }
     return(pmap[lname])
 
@@ -82,8 +86,9 @@ def process_group(style_node, reference):
     """
     pass
 
-def format_name(parent, name_node, contributor):
-    contributor_node = SubElement(parent, "span", {"property": "dc:creator"})
+def format_name(parent, name_node, contributor, role):
+    contributor_node = SubElement(parent, "span")
+    contributor_node.set('property', get_property(role))
     contributor_node.text = contributor['family']
     return(contributor_node)
 
@@ -101,7 +106,7 @@ def process_names(parent, names_node, reference):
     for role in roles:
         if role in reference:
             for contributor in reference[role]:
-                format_name(parent, names_node.find(CSLNS + 'name'), contributor)
+                format_name(parent, names_node.find(CSLNS + 'name'), contributor, role)
         else:
             substitute(substitute_node, reference)
 

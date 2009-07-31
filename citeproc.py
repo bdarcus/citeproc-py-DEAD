@@ -94,7 +94,7 @@ def process_names(names_node, reference):
     contributor names.
     """
     roles = names_node.get('variable').split(' ')
-    substitute_node = names_node.find(CSLNS + substitute)
+    substitute_node = names_node.find(CSLNS + 'substitute')
 
     for role in roles:
         if role in reference:

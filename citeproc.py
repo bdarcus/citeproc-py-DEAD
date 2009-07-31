@@ -82,13 +82,15 @@ def process_group(style_node, reference):
     """
     pass
 
-def format_name(name_node, contributor):
-    pass
+def format_name(parent, name_node, contributor):
+    contributor_node = SubElement(parent, "span", {"property": "dc:creator"})
+    contributor_node.text = contributor['family']
+    return(contributor_node)
 
 def substitute(substitute_node, reference):
     pass
 
-def process_names(names_node, reference):
+def process_names(parent, names_node, reference):
     """
     When given a style node and a reference, returns an evaluated list of 
     contributor names.
@@ -99,7 +101,7 @@ def process_names(names_node, reference):
     for role in roles:
         if role in reference:
             for contributor in reference[role]:
-                format_name(names_node.find(CSLNS + name), contributor)
+                format_name(parent, names_node.find(CSLNS + 'name'), contributor)
         else:
             substitute(substitute_node, reference)
 
@@ -176,7 +178,7 @@ def process_node(parent, style_node, style_macros, reference):
     if style_node.tag == CSLNS + "group":
         return(process_group(style_node, reference))
     elif style_node.tag == CSLNS + "names":
-        return(process_names(style_node, reference))
+        return(process_names(parent, style_node, reference))
     elif style_node.tag == CSLNS + "choose":
         return(process_choose(parent, style_node, style_macros, reference))
     elif style_node.tag == CSLNS + "text":

@@ -8,7 +8,10 @@ Language (CSL).
 >>> format_bibliography(PROCESSED)
 """
 from xml.etree.ElementTree import Element, SubElement, ElementTree, tostring
-import json
+try:
+    import simplejson as json
+except:
+    import json
 
 CSLNS = '{http://purl.org/net/xbiblio/csl}'
 
@@ -101,7 +104,7 @@ def format_name(parent, name_node, contributor, role):
 def substitute(substitute_node, reference):
     pass
 
-def process_names(parent, names_node, reference):
+def process_names(parent, names_node, reference, display=True):
     """
     When given a style node and a reference, returns an evaluated list of 
     contributor names.
@@ -111,8 +114,13 @@ def process_names(parent, names_node, reference):
 
     for role in roles:
         if role in reference:
-            for contributor in reference[role]:
-                format_name(parent, names_node.find(CSLNS + 'name'), contributor, role)
+            if display:
+                # grab the list of formatted names, according the CSL definitions
+                for contributor in reference[role]:
+                    format_name(parent, names_node.find(CSLNS + 'name'), contributor, role)
+            else:
+                # return a string representation of the names for sorting
+                (":").join(reference[role])    
         else:
             substitute(substitute_node, reference)
 

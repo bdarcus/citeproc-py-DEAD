@@ -122,9 +122,12 @@ def process_names(parent, names_node, style_macros, reference, display=True):
     for role in roles:
         if role in reference:
             if display:
-                # grab the list of formatted names, according the CSL definitions
+                # grab the list of formatted names, according the 
+                # CSL definitions
                 for contributor in reference.pop(role):
-                    format_name(parent, names_node.find(CSLNS + 'name'), contributor, role)
+                    format_name(parent, 
+                                names_node.find(CSLNS + 'name'), 
+                                contributor, role)
             else:
                 # return a string representation of the names for sorting
                 (":").join(reference[role])    
@@ -192,7 +195,10 @@ def process_text(parent, style_node, style_macros, reference):
             node.text = content
             return(node)
     elif macro:
-        macro_result = process_macro(parent, get_macro(macro, style_macros), style_macros, reference)
+        macro_result = process_macro(parent, 
+                                     get_macro(macro, style_macros), 
+                                     style_macros, 
+                                     reference)
         return(macro_result)
     else:
         pass
@@ -215,7 +221,8 @@ def process_macro(parent, macro, style_macros, reference):
     When given a macro and a reference, return an evaluated macro 
     (a list of FormattedNode objects).
     """
-    mlist = [process_node(parent, style_node, style_macros, reference) for style_node in macro]
+    mlist = [process_node(parent, style_node, style_macros, reference) 
+             for style_node in macro]
     return(mlist)
 
 def process_citation(style, reference_list, citation):
@@ -241,7 +248,9 @@ def process_bibliography(style, reference_list):
     processed_bibliography = Element("ol", attrib={"class":"bibliography"})
 
     for reference in reference_list:
-        ref = SubElement(processed_bibliography, "li", attrib={"property":"dc:references"})
+        ref = SubElement(processed_bibliography, "li", 
+                         attrib={"property":"dc:references"})
+
         for style_node in style.bibliography.layout:
             process_node(ref, style_node, style.macros, reference) 
 

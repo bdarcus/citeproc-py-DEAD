@@ -123,7 +123,7 @@ def process_names(parent, names_node, style_macros, reference, display=True):
         if role in reference:
             if display:
                 # grab the list of formatted names, according the CSL definitions
-                for contributor in reference[role]:
+                for contributor in reference.pop(role):
                     format_name(parent, names_node.find(CSLNS + 'name'), contributor, role)
             else:
                 # return a string representation of the names for sorting

@@ -101,10 +101,17 @@ def format_name(parent, name_node, contributor, role):
     contributor_node.text = name
     return(contributor_node)
 
-def substitute(substitute_node, reference):
-    pass
+def substitute(parent, substitute_node, style_macros, reference):
+    children = substitute_node.getchildren()
 
-def process_names(parent, names_node, reference, display=True):
+    for child in children:
+        processed_node = process_node(parent, child, style_macros, reference)
+        if processed_node:
+            return(processed_node)
+        else:
+            pass
+
+def process_names(parent, names_node, style_macros, reference, display=True):
     """
     When given a style node and a reference, returns an evaluated list of 
     contributor names.
@@ -122,7 +129,7 @@ def process_names(parent, names_node, reference, display=True):
                 # return a string representation of the names for sorting
                 (":").join(reference[role])    
         else:
-            substitute(substitute_node, reference)
+            substitute(parent, substitute_node, style_macros, reference)
 
 def condition(condition_attributes, reference):
     """
@@ -178,7 +185,7 @@ def process_text(parent, style_node, style_macros, reference):
     macro = style_node.get('macro')
     
     if variable:
-        content = reference[style_node.get('variable')] if variable in reference else None
+        content = reference.pop(style_node.get('variable')) if variable in reference else None
         if content:
             node = SubElement(parent, "span", attrib=formatting)
             node.set('property', get_property(node.attrib.pop('variable')))
@@ -197,7 +204,7 @@ def process_node(parent, style_node, style_macros, reference):
     if style_node.tag == CSLNS + "group":
         return(process_group(style_node, reference))
     elif style_node.tag == CSLNS + "names":
-        return(process_names(parent, style_node, reference))
+        return(process_names(parent, style_node, style_macros, reference))
     elif style_node.tag == CSLNS + "choose":
         return(process_choose(parent, style_node, style_macros, reference))
     elif style_node.tag == CSLNS + "text":

@@ -8,6 +8,7 @@ Language (CSL).
 >>> format_bibliography(PROCESSED)
 """
 from xml.etree.ElementTree import Element, SubElement, ElementTree, tostring
+
 try:
     import simplejson as json
 except:
@@ -92,13 +93,15 @@ def process_group(style_node, reference):
 def format_name(parent, name_node, contributor, role):
     contributor_node = SubElement(parent, "span")
     contributor_node.set('property', get_property(role))
+    contributor_node.set('typeOf', 'foaf:Person')
 
-    name = ""
-    name += contributor['family']
-    name += ", "
-    name += contributor['given']
+    fname = SubElement(contributor_node, 'span')
+    fname.set('property', 'foaf:surname')
+    fname.text = contributor['family']
+    gname = SubElement(contributor_node, 'span')
+    gname.set('property', 'foaf:givenname')
+    gname.text = contributor['given']
     
-    contributor_node.text = name
     return(contributor_node)
 
 def substitute(parent, substitute_node, style_macros, reference):

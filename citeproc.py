@@ -100,6 +100,7 @@ def format_name(parent, name_node, contributor, role, swap=False):
             fname = SubElement(contributor_node, 'span')
             fname.set('property', 'foaf:surname')
             fname.text = contributor['family']
+            fname.tail = ", " if swap else " "
         
             gname = SubElement(contributor_node, 'span')
             gname.set('property', 'foaf:givenname')

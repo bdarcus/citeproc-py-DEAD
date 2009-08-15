@@ -109,6 +109,7 @@ def format_name(parent, name_node, contributor, role, swap=False):
             gname = SubElement(contributor_node, 'span')
             gname.set('property', 'foaf:givenname')
             gname.text = contributor['given']
+            gname.tail = " "
 
             fname = SubElement(contributor_node, 'span')
             fname.set('property', 'foaf:surname')

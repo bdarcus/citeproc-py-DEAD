@@ -96,9 +96,10 @@ def initialize(name, init_with):
 def format_name(parent, name_node, contributor, role, swap=False):
     contributor_node = SubElement(parent, "span")
     contributor_node.set('property', get_property(role))
-    contributor_node.set('typeOf', 'foaf:Person')
 
     if contributor['given'] and contributor['family']:
+
+        contributor_node.set('typeOf', 'foaf:Person')
 
         init_with = name_node.get('initialize-with')
         display_as_sort = contributor.get('display-as-sort')
@@ -133,6 +134,8 @@ def format_name(parent, name_node, contributor, role, swap=False):
             fname.text = contributor['family']
 
     elif contributor['name']:
+        # we assume we have an organization
+        contributor_node.set('typeOf', 'foaf:Organization')
         name = SubElement(contributor_node, 'span')
         name.set('property', 'foaf:name')
         name.text = contributor['name']

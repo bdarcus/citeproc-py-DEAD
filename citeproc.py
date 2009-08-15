@@ -18,7 +18,7 @@ CSLNS = '{http://purl.org/net/xbiblio/csl}'
 
 # >>> classes <<<
 
-class Style(ElementTree):
+class Style():
     """
     An ElementTree wrapper to easily parse and work with a CSL instance.
     >>> style = Style('some.csl')
@@ -27,7 +27,7 @@ class Style(ElementTree):
     """
 
     def __init__(self, csl_fname):
-        _style = self.parse(csl_fname)
+        _style = ElementTree.parse(self, csl_fname)
         _info = _style.find(CSLNS + 'info')
         self.title = _info.find(CSLNS + 'title').text
         self.updated = _info.find(CSLNS + 'updated').text
@@ -229,7 +229,11 @@ def process_text(parent, style_node, style_macros, reference):
     macro = style_node.get('macro')
     
     if variable:
-        content = reference.pop(style_node.get('variable')) if variable in reference else None
+        if variable in reference:
+            content = reference.pop(style_node.get('variable'))
+        else:
+            content = None
+
         if content:
             node = SubElement(parent, "span", attrib=formatting)
             node.set('property', get_property(node.attrib.pop('variable')))

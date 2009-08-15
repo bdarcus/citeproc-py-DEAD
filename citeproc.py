@@ -7,7 +7,11 @@ Language (CSL).
 >>> PROCESSED = process_bibliography(STYLE, REFS)
 >>> format_bibliography(PROCESSED)
 """
-from xml.etree.ElementTree import Element, SubElement, ElementTree, tostring
+try:
+    from lxml import etree as ElementTree
+    from lxml.etree import Element, SubElement, tostring
+except:
+    from xml.etree.ElementTree import Element, SubElement, ElementTree, tostring
 
 try:
     import simplejson as json

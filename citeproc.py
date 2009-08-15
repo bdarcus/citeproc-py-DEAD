@@ -7,11 +7,7 @@ Language (CSL).
 >>> PROCESSED = process_bibliography(STYLE, REFS)
 >>> format_bibliography(PROCESSED)
 """
-try:
-    from lxml import etree as ElementTree
-    from lxml.etree import Element, SubElement, tostring
-except:
-    from xml.etree.ElementTree import Element, SubElement, ElementTree, tostring
+from xml.etree.ElementTree import Element, SubElement, ElementTree, tostring
 
 try:
     import simplejson as json
@@ -31,7 +27,8 @@ class Style():
     """
 
     def __init__(self, csl_fname):
-        _style = ElementTree.parse(self, csl_fname)
+        _style = ElementTree()
+        _style.parse(csl_fname)
         _info = _style.find(CSLNS + 'info')
         self.title = _info.find(CSLNS + 'title').text
         self.updated = _info.find(CSLNS + 'updated').text

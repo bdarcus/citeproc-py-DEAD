@@ -90,17 +90,32 @@ def process_group(style_node, reference):
     """
     pass
 
-def format_name(parent, name_node, contributor, role):
+def format_name(parent, name_node, contributor, role, swap=False):
     contributor_node = SubElement(parent, "span")
     contributor_node.set('property', get_property(role))
     contributor_node.set('typeOf', 'foaf:Person')
 
-    fname = SubElement(contributor_node, 'span')
-    fname.set('property', 'foaf:surname')
-    fname.text = contributor['family']
-    gname = SubElement(contributor_node, 'span')
-    gname.set('property', 'foaf:givenname')
-    gname.text = contributor['given']
+    if contributor['given'] and contributor['family']:
+        if contributor.get('display-as-sort') or swap:
+            fname = SubElement(contributor_node, 'span')
+            fname.set('property', 'foaf:surname')
+            fname.text = contributor['family']
+        
+            gname = SubElement(contributor_node, 'span')
+            gname.set('property', 'foaf:givenname')
+            gname.text = contributor['given']
+        else:
+            gname = SubElement(contributor_node, 'span')
+            gname.set('property', 'foaf:givenname')
+            gname.text = contributor['given']
+
+            fname = SubElement(contributor_node, 'span')
+            fname.set('property', 'foaf:surname')
+            fname.text = contributor['family']
+    elif contributor['name']:
+        name = SubElement(contributor_node, 'span')
+        name.set('property', 'foaf:name')
+        name.text = contributor['name']
     
     return(contributor_node)
 

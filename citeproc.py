@@ -90,13 +90,20 @@ def process_group(style_node, reference):
     """
     pass
 
+def initialize(name, init_with):
+    return(init_with.join(part[0] for part in name.split(" ")) + init_with)
+
 def format_name(parent, name_node, contributor, role, swap=False):
     contributor_node = SubElement(parent, "span")
     contributor_node.set('property', get_property(role))
     contributor_node.set('typeOf', 'foaf:Person')
 
     if contributor['given'] and contributor['family']:
-        if contributor.get('display-as-sort') or swap:
+
+        init_with = name_node.get('initialize-with')
+        display_as_sort = contributor.get('display-as-sort')
+
+        if display_as_sort or swap:
             fname = SubElement(contributor_node, 'span')
             fname.set('property', 'foaf:surname')
             fname.text = contributor['family']
@@ -104,7 +111,13 @@ def format_name(parent, name_node, contributor, role, swap=False):
         
             gname = SubElement(contributor_node, 'span')
             gname.set('property', 'foaf:givenname')
-            gname.text = contributor['given']
+
+            if init_with:
+                if display_as_sort:
+                    gname.text = contributor['given']
+                else:
+                    gname.set('content', contributor['given'])
+                    gname.text = initialize(contributor['given'], init_with)
         else:
             gname = SubElement(contributor_node, 'span')
             gname.set('property', 'foaf:givenname')
@@ -114,6 +127,7 @@ def format_name(parent, name_node, contributor, role, swap=False):
             fname = SubElement(contributor_node, 'span')
             fname.set('property', 'foaf:surname')
             fname.text = contributor['family']
+
     elif contributor['name']:
         name = SubElement(contributor_node, 'span')
         name.set('property', 'foaf:name')
@@ -142,7 +156,7 @@ def process_names(parent, names_node, style_macros, reference, display=True):
     for role in roles:
         if role in reference:
             if display:
-                # grab the list of formatted names, according the 
+                # grab the list of formatted names, according to the 
                 # CSL definitions
                 for contributor in reference.pop(role):
                     format_name(parent, 

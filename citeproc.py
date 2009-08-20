@@ -98,7 +98,7 @@ def format_name(parent, name_node, contributor, role, swap=False):
     contributor_node = SubElement(parent, "span")
     contributor_node.set('property', get_property(role))
 
-    if contributor['given'] and contributor['family']:
+    if 'given' and 'family' in contributor:
 
         contributor_node.set('typeOf', 'foaf:Person')
 

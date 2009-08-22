@@ -153,6 +153,21 @@ def substitute(parent, substitute_node, style_macros, reference):
         else:
             pass
 
+def range_collapse(begin, end, algorithm='Chicago'):
+    """
+    When given the begin and end integers of a number range, returns 
+    the range collapsed accoording to the specified algorithm.
+    >>> range_collapse(101, 108)
+    '101-8'
+    """
+    if begin > 100 and mod(begin, 100) and idiv(begin, 100) == idiv(end, 100):
+        return(str(begin) + '-' + str(mod(end, 100)))
+    else:
+        return(str(begin) + '-' + str(end))
+
+def process_dates():
+    pass
+
 def process_names(parent, names_node, style_macros, reference, display=True):
     """
     When given a style node and a reference, returns an evaluated list of 

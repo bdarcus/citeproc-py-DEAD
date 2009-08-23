@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 For processing citations and bibliographies using the Citation Style 
 Language (CSL).

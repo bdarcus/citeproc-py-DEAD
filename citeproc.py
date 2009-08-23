@@ -166,7 +166,13 @@ def range_collapse(begin, end, algorithm='Chicago'):
     else:
         return(str(begin) + '–' + str(end))
 
-def process_dates():
+def date(date_string):
+    circa = date_string.endswith('~')
+    d = date_string.strip('~')
+    ds = d.split('-')
+    return(ds, circa)
+
+def process_date():
     pass
 
 def process_names(parent, names_node, style_macros, reference, display=True):

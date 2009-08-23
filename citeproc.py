@@ -161,9 +161,9 @@ def range_collapse(begin, end, algorithm='Chicago'):
     '101-8'
     """
     if begin > 100 and mod(begin, 100) and idiv(begin, 100) == idiv(end, 100):
-        return(str(begin) + '-' + str(mod(end, 100)))
+        return(str(begin) + '–' + str(mod(end, 100)))
     else:
-        return(str(begin) + '-' + str(end))
+        return(str(begin) + '–' + str(end))
 
 def process_dates():
     pass

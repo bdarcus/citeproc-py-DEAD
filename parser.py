@@ -1,8 +1,11 @@
 from pyparsing import *
 
+lbracket = Suppress( "[" )
+rbracket = Suppress( "]" )
+
 key = Word(alphanums)
 
-citation = "[" + delimitedList(key, ';') + "]"
+citation = lbracket + delimitedList(key, ';') + rbracket
 
 doc = "One [doe99] two [smith09; jones08]. Three [zon05]."
 

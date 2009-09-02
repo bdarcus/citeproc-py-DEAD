@@ -1,15 +1,17 @@
 from pyparsing import *
 
-lbracket = Suppress( "[" )
-rbracket = Suppress( "]" )
+DOC = "One [doe99] two [smith09; jones08]. Three [zon05]."
 
-key = Word(alphanums)
+def parse_citations(document):
+    lbracket = Suppress( "[" )
+    rbracket = Suppress( "]" )
 
-citation = lbracket + delimitedList(key, ';') + rbracket
+    key = Word(alphanums)
 
-doc = "One [doe99] two [smith09; jones08]. Three [zon05]."
+    citation = lbracket + delimitedList(key, ';') + rbracket
 
-for c in citation.searchString(doc):
-    print c
+    return(citation.searchString(document))
+
+print parse_citations(DOC)
 
 

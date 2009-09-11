@@ -154,17 +154,20 @@ def substitute(parent, substitute_node, style_macros, reference):
         else:
             pass
 
-def range_collapse(begin, end, algorithm='Chicago'):
+def range_collapse(begin, end, algorithm='chicago'):
     """
     When given the begin and end integers of a number range, returns 
     the range collapsed accoording to the specified algorithm.
     >>> range_collapse(101, 108)
     '101-8'
     """
-    if begin > 100 and mod(begin, 100) and idiv(begin, 100) == idiv(end, 100):
-        return(str(begin) + '–' + str(mod(end, 100)))
-    else:
-        return(str(begin) + '–' + str(end))
+    if algorithm == 'chicago':
+        if begin > 100 and mod(begin, 100) and idiv(begin, 100) == idiv(end, 100):
+            return(str(begin) + '–' + str(mod(end, 100)))
+        elif begin >= 10000:
+            ret = (str(begin) + '–' + str(mod(end, 1000)))
+        else:
+            return(str(begin) + '–' + str(end))
 
 def date(date_string):
     circa = date_string.endswith('~')

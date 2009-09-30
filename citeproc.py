@@ -165,7 +165,7 @@ def range_collapse(begin, end, algorithm='chicago'):
         if begin > 100 and mod(begin, 100) and idiv(begin, 100) == idiv(end, 100):
             return(str(begin) + '–' + str(mod(end, 100)))
         elif begin >= 10000:
-            ret = (str(begin) + '–' + str(mod(end, 1000)))
+            return(str(begin) + '–' + str(mod(end, 1000)))
         else:
             return(str(begin) + '–' + str(end))
 

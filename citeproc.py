@@ -64,19 +64,56 @@ def get_property(lname):
     When given a CSL variable name, returns the corresponding RDF property.
     """
     pmap = { 
+        # names/contributors
         "author": "dc:creator",
         "editor": "bibo:editor",
         "translator": "bibo:translator",
+        "recipient": "bibo:recipient",
+        "interviewer": "bibo:interviewer",
         "title": "dc:title", 
         "issued": "dc:issued",
         "volume": "bibo:volume",
         "issue": "bibo:issue",
         "doi": "bibo:doi",
-        "uri": "bibo:uri",
-        "isbn": "bibo:isbn",
+        "ISBN": "bibo:isbn",
         # return a dict for relations; need to adjust other code
         "container-title": {"dc:isPartOf": "dc:title"},
-        "publisher": {"dc:publisher": "foaf:name"}
+        "publisher": {"dc:publisher": "foaf:name"},
+        "abstract": "dc:abstract",
+        "URL": "bibo:uri",
+        # archive
+        # archive_location
+        # archive-place
+        # authority
+        # call-number
+        # chapter-number
+        # citation-label
+        # collection-title
+        # edition
+        # event
+        # event-place
+        # genre
+        # issue
+        # jurisdiction
+        # keyword
+        # locator
+        # medium
+        # note
+        # annote
+        # number
+        # number-of-pages
+        # number-of-volumes
+        # original-publisher
+        # original-publisher-place
+        # original-title
+        # page
+        # page-first
+        # publisher
+        # publisher-place
+        # references
+        # section
+        # status
+        # version
         }
     return(pmap[lname])
 

@@ -1,8 +1,6 @@
 # CiteProc-py
 
-This is a python implementation of the Citation Style Language (CSL). It is currently _far_ from complete.
-
-This may just be experiment.
+This is a python implementation of the Citation Style Language (CSL). It is currently _far_ from complete, and may just be experiment.
 
 The goal is a Python CSL implementation that includes a good test foundation, and is easy 
 to integrate into different contexts.

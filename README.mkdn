@@ -1,6 +1,6 @@
 # CiteProc-py
 
-This is a python implementation of the Citation Style Language (CSL).
+This is a python implementation of the Citation Style Language (CSL). It is currently _far_ from complete.
 
 This may just be experiment.
 

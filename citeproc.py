@@ -336,8 +336,8 @@ def process_macro(parent, macro, style_macros, reference):
 def process_citation(style, reference_list, citation):
     """
     With a Style, a list of References and the list of citation groups 
-    (the list of citations with their locator), produce the
-    formatted output for each citation group.
+    (the list of citations with their prefixes/suffixes and locators), 
+    produce the formatted output for each citation group.
     """
     processed_citation = Element("span", attrib={"class":"citation"})
 
